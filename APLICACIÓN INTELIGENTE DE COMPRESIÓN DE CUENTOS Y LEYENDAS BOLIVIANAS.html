@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lector Bolivia 🇧🇴</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#eef7f6;    margin:0;
+
+    color:#263238;
+}
+
+header{
+    background:linear-gradient(135deg,#00695c,#00897b);
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+}
+
+header h1{
+    font-size:36px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:16px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+}
+
+.login{
+    max-width:500px;
+    margin:35px auto;
+    text-align:center;
+}
+
+h2{
+    color:#00695c;
+    margin-bottom:15px;
+}
+
+h3{
+    margin:10px 0;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:13px;
+    margin:8px 0;
+    border:1px solid #bbb;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    border:none;
+    border-radius:10px;
+    padding:12px 18px;
+    margin:5px;
+    background:#00897b;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+    transform:scale(1.01);
+}
+
+.btn-blue{
+    background:#1976d2;
+}
+
+.btn-red{
+    background:#c62828;
+}
+
+.btn-yellow{
+    background:#f9a825;
+    color:#222;
+}
+
+.btn-purple{
+    background:#7b1fa2;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.menu{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+}
+
+.menu button{
+    flex:1;
+    min-width:130px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
+}
+
+.story{
+    background:#fafafa;
+    border:1px solid #ddd;
+    border-radius:15px;
+    padding:18px;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.story:hover{
+    transform:translateY(-4px);
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+}
+
+.story-icon{
+    font-size:48px;
+    margin-bottom:8px;
+}
+
+.story-image{
+    width:100%;
+    height:145px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.media-preview{
+    width:100%;
+    max-height:340px;
+    object-fit:cover;
+    border-radius:10px;
+    margin:12px 0;
+    background:#263238;
+}
+
+.media-tools{
+    background:#f5f5f5;
+    border-radius:10px;
+    padding:12px;
+    margin-top:15px;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#e0f2f1;
+    margin:4px 2px;
+    font-size:13px;
+}
+
+.welcome{
+    background:#e0f2f1;
+    padding:18px;
+    border-radius:14px;
+    margin-bottom:15px;
+}
+
+.password-box{
+    background:#f1f8e9;
+    padding:15px;
+    border-radius:12px;
+    margin:10px 0;
+}
+
+.question{
+    background:#fafafa;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:16px;
+    margin:12px 0;
+}
+
+.question label{
+    display:block;
+    padding:7px;
+}
+
+.question input{
+    width:auto;
+    margin-right:8px;
+}
+
+.result{
+    padding:20px;
+    border-radius:14px;
+    background:#e8f5e9;
+    margin-top:15px;
+    text-align:center;
+    font-size:20px;
+}
+
+.progress-bg{
+    width:100%;
+    height:25px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#00897b;
+    transition:.5s;
+}
+
+.stat{
+    background:#f5f5f5;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.stat-number{
+    font-size:32px;
+    font-weight:bold;
+    color:#00695c;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:9px;
+    text-align:center;
+}
+
+th{
+    background:#00695c;
+    color:white;
+}
+
+.online{
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+.offline{
+    color:#c62828;
+    font-weight:bold;
+}
+
+.small{
+    color:#666;
+    font-size:13px;
+}
+
+.reading{
+    line-height:1.8;
+    font-size:17px;
+}
+
+.reading p{
+    margin-bottom:14px;
+}
+
+.reading-tools{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin:15px 0;
+}
+
+.reading-tools button{
+    margin:0;
+}
+
+.toast{
+    background:#e0f2f1;
+    border-left:4px solid #00897b;
+    border-radius:8px;
+    color:#263238;
+    margin:12px 0;
+    padding:12px 15px;
+}
+
+.game-box{
+    background:#fff8e1;
+    border:1px solid #f0c36d;
+    border-radius:12px;
+    padding:18px;
+    margin-top:20px;
+}
+
+.game-options{
+    display:grid;
+    gap:8px;
+    margin:15px 0;
+}
+
+.game-options button{
+    margin:0;
+    text-align:left;
+}
+
+.game-score{
+    color:#7b1fa2;
+    font-weight:bold;
+}
+
+.score-history{
+    background:#e8f5e9;
+    border-radius:10px;
+    margin:15px 0;
+    padding:15px;
+}
+
+.game-menu{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
+}
+
+.word-grid{
+    display:grid;
+    grid-template-columns:repeat(10, minmax(24px, 1fr));
+    gap:3px;
+    max-width:420px;
+    margin:15px auto;
+}
+
+.word-grid button{
+    aspect-ratio:1;
+    padding:0;
+    margin:0;
+    font-size:15px;
+    background:#00897b;
+}
+
+.word-grid button.selected{
+    background:#f9a825;
+    color:#222;
+}
+
+.word-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    justify-content:center;
+}
+
+.crossword-clue{
+    display:grid;
+    grid-template-columns:1fr minmax(130px,220px);
+    gap:8px;
+    align-items:center;
+    margin:8px 0;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+
+@media(max-width:700px){
+    header h1{
+        font-size:27px;
+    }
+
+    .card{
+        padding:17px;
+    }
+
+    table{
+        font-size:11px;
+    }
+
+    th,td{
+        padding:5px;
+    }
+}
+
+.library-tools{
+    display:grid;
+    grid-template-columns:minmax(200px,2fr) minmax(160px,1fr);
+    gap:10px;
+    margin:18px 0;
+}
+
+.library-tools input,.library-tools select{
+    margin:0;
+}
+
+.story-complete{
+    border-color:#75c7a0;
+    background:#f1fbf3;
+}
+
+.story:focus-visible{
+    outline:3px solid rgba(25,118,210,.3);
+    outline-offset:2px;
+}
+
+@media(max-width:700px){
+    .library-tools{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🇧🇴 Lector Bolivia</h1>
+    <p>
+        Aplicación inteligente de comprensión lectora
+        basada en cuentos y leyendas bolivianas
+    </p>
+</header>
+
+<div class="container">
+
+<!-- ================= LOGIN ===================-->
+<section id="login" class="card login">
+    <h2>🔐 Iniciar sesión</h2>
+    <p>Selecciona el tipo de usuario</p>
+    <select id="tipoUsuario" onchange="cambiarUsuario()">
+        <option value="estudiante">👧🏻🧒🏻 Estudiantes</option>
+        <option value="profesora">👩🏻‍🏫 Profesora</option>
+    </select>
+
+    <!--LOGIN ESTUDIANTE-->
+    <div id="loginEstudiante">
+        <h3>👧🏻🧒🏻 Acceso del estudiante</h3>
+        <label>Selecciona tu nombre:</label>
+        <select id="listaEstudiantes" onchange="mostrarEstudiante()">
+            <option value="">--Selecciona tu nombre--</option>
+        </select>
+        <div id="datosEstudiante" class="password-box hidden">
+            <p><b>Usuario:</b> <span id="usuarioMostrar"></span></p>
+            <p><b>Escribe tu contraseña</b></p>
+            <input id="passwordEstudiante" type="password" placeholder="Contraseña del estudiante" autocomplete="current-password">
+            <p class="small">🔐 Solo podrás ingresar con la contraseña asignada a tu usuario.</p>
+        </div>
+        <button onclick="entrarEstudiante()">🚀 Ingresar</button>
+    </div>
+
+    <!--LOGIN PROFESORA -->
+    <div id="loginProfesora" class="hidden">
+        <h3>👩🏻‍🏫 Acceso privado de profesora</h3>
+        <input id="usuarioProfesora" placeholder="Usuario de profesora">
+        <input id="passwordProfesora" type="password" placeholder="Contraseña">
+        <button class="btn-purple" onclick="entrarProfesora()">🔐 Ingresar como profesora</button>
+        <p class="small">El panel docente está separado del panel de los estudiantes.</p>
+    </div>
+    <p id="errorLogin" style="color:#c62828;font-weight:bold;"></p>
+</section>
+
+<!--============== PANEL ESTUDIANTE ==================-->
+<section id="panelEstudiante" class="hidden">
+    <div class="card">
+        <h2>👋🏻 Bienvenido/a, <span id="nombreEstudiante"></span></h2>
+        <p>Usuario: <b id="usuarioActual"></b> | Curso: <b id="cursoActual"></b></p>
+        <br>
+        <div class="menu">
+            <button onclick="seccion('perfil')">👤 Perfil</button>
+            <button onclick="seccion('biblioteca')">📚 Biblioteca</button>
+            <button onclick="seccion('lectura')">📖 Lectura</button>
+            <button onclick="seccion('actividades')">🎮 Actividades</button>
+            <button onclick="seccion('evaluacion')">📓 Evaluación</button>
+            <button onclick="seccion('progreso')">📊 Progreso</button>
+            <button onclick="seccion('logros')">🏆 Logros</button>
+            <button onclick="seccion('recomendaciones')">💡 Recomendaciones</button>
+            <button class="btn-red" onclick="cerrarSesion()">🚪 Salir</button>
+        </div>
+    </div>
+
+    <!--PERFIL-->
+    <div id="perfil" class="subseccion card">
+        <h2>👤 Perfil del estudiante</h2>
+        <div class="welcome">
+            <p><b>Nombre:</b> <span id="perfilNombre"></span></p>
+            <p><b>Edad:</b> <span id="perfilEdad"></span> años</p>
+            <p><b>Curso:</b> <span id="perfilCurso"></span></p>
+            <p><b>Nivel de comprensión:</b> <span id="perfilNivel"></span></p>
+        </div>
+    </div>
+
+    <!--BIBLIOTECA-->
+    <div id="biblioteca" class="subseccion card hidden">
+        <h2>📚 Biblioteca Boliviana</h2>
+        <p>Selecciona un cuento o leyenda para comenzar.</p>
+        <div class="library-tools">
+            <input id="buscarCuento" type="search" placeholder="🔎 Buscar por título..." oninput="cargarBiblioteca()" aria-label="Buscar cuentos y leyendas">
+            <select id="filtroTipo" onchange="cargarBiblioteca()" aria-label="Filtrar por tipo">
+                <option value="todos">Todos los textos</option>
+                <option value="Cuento">Cuentos</option>
+                <option value="Leyenda">Leyendas</option>
+                <option value="Historia">Historias</option>
+            </select>
+        </div>
+        <p id="contadorBiblioteca" class="small" aria-live="polite"></p>
+        <div id="bibliotecaGrid" class="grid"></div>
+    </div>
+
+    <!--LECTURA-->
+    <div id="lectura" class="subseccion card hidden">
+        <h2 id="tituloLectura">📖 Selecciona una lectura</h2>
+        <div id="textoLectura" class="reading">
+            <p>Ingresa a la biblioteca y selecciona un cuento o leyenda.</p>
+        </div>
+        <img id="imagenLectura" class="media-preview hidden" alt="Imagen de la lectura">
+        <video id="videoLectura" class="media-preview hidden" controls></video>
+        <div id="mediaDocente" class="media-tools hidden">
+            <p><b>🎬 Agregar material para esta lectura</b></p>
+            <p class="small">Selecciona una imagen o video guardado en tu computadora.</p>
+            <input id="archivoImagen" type="file" accept="image/*" onchange="cargarImagenLocal(event)">
+            <input id="archivoVideo" type="file" accept="video/*" onchange="cargarVideoLocal(event)">
+        </div>
+        <div class="reading-tools" aria-label="Controles de lectura">
+            <button onclick="leerTextoLectura()">🔊 Escuchar texto</button>
+            <button class="btn-blue" onclick="detenerLectura()">⏹️ Detener</button>
+            <button class="btn-yellow" onclick="cambiarTamanoLectura(-1)" aria-label="Reducir tamaño del texto">A−</button>
+            <button class="btn-yellow" onclick="cambiarTamanoLectura(1)" aria-label="Aumentar tamaño del texto">A+</button>
+        </div>
+        <div id="mensajeLectura" class="toast hidden" role="status" aria-live="polite"></div>
+        <div class="card">
+            <h3>🎙️ Audio de la lectura</h3>
+            <p class="small">Puedes colocar archivos MP3 en tu proyecto y escribir su nombre en la propiedad "audio" de cada cuento.</p>
+            <audio id="audioLectura" class="hidden" controls>Tu navegador no permite reproducir audio.</audio>
+        </div>
+        <button onclick="terminarLectura()">✅ Terminé de leer</button>
+    </div>
+
+    <!--ACTIVIDADES-->
+    <div id="actividades" class="subseccion card hidden">
+        <h2>🎮 Actividades lúdicas</h2>
+        <p>Responde las actividades sobre la lectura que elegiste.</p>
+        <div>
+            <span class="badge">🟢 Literal</span>
+            <span class="badge">🟡 Inferencial</span>
+            <span class="badge">🔵 Valorativa</span>
+        </div>
+        <div id="contenidoActividades"></div>
+        <div id="juegoComprension" class="game-box"></div>
+    </div>
+
+    <!--EVALUACION-->
+    <div id="evaluacion" class="subseccion card hidden">
+        <h2>📓 Evaluación de comprensión</h2>
+        <p>Selecciona el nivel de dificultad:</p>
+        <select id="nivelEvaluacion" onchange="crearEvaluacion()">
+            <option value="facil">🟢 Fácil</option>
+            <option value="medio">🟡 Medio</option>
+            <option value="dificil">🔵 Difícil</option>
+        </select>
+        <div id="contenidoEvaluacion"></div>
+        <div id="historialEvaluaciones" class="score-history"></div>
+    </div>
+
+    <!--PROGRESO-->
+    <div id="progreso" class="subseccion card hidden">
+        <h2>📊 Mi progreso</h2>
+        <p>Progreso general:</p>
+        <div class="progress-bg">
+            <div id="barraProgreso" class="progress-bar"></div>
+        </div>
+        <p id="porcentajeProgreso">0%</p>
+        <br>
+        <p>📖 Lecturas: <b id="numeroLectura">0</b></p>
+        <p>🎮 Actividades: <b id="numeroActividades">0</b></p>
+        <p>📓 Mejor calificación: <b id="mejorCalificacion">0</b>/100</p>
+        <p>📚 Nivel: <b id="nivelCompresion">En proceso</b></p>
+    </div>
+
+    <!--LOGROS-->
+    <div id="logros" class="subseccion card hidden">
+        <h2>🏆 Mis logros</h2>
+        <div id="listaLogros"></div>
+    </div>
+
+    <!--RECOMENDACIONES-->
+    <div id="recomendaciones" class="subseccion card hidden">
+        <h2>💡 Recomendaciones</h2>
+        <div id="listaRecomendaciones"></div>
+    </div>
+</section>
+
+<!--===================PANEL PROFESORA================-->
+<section id="panelProfesora" class="hidden">
+    <div class="card">
+        <h2>👩🏻‍🏫 Panel de la Profesora</h2>
+        <p>Seguimiento del progreso de los estudiantes</p>
+        <br>
+        <div class="menu">
+            <button onclick="actualizarPanelDocente()">🔁 Actualizar</button>
+            <button class="btn-blue" onclick="exportarReportes()">📄 Exportar reportes</button>
+            <button class="btn-red" onclick="cerrarSesion()">🚪 Salir</button>
+        </div>
+    </div>
+
+    <!--ESTADISTICA-->
+    <div class="card">
+        <h2>📊 Estadística</h2>
+        <div class="grid">
+            <div class="stat">
+                <h3>👤 Estudiantes</h3>
+                <div id="totalEstudiantes" class="stat-number">0</div>
+            </div>
+            <div class="stat">
+                <h3>🟢 Ingresaron</h3>
+                <div id="estudiantesIngresaron" class="stat-number">0</div>
+            </div>
+            <div class="stat">
+                <h3>📖 Lecturas</h3>
+                <div id="totalLecturas" class="stat-number">0</div>
+            </div>
+            <div class="stat">
+                <h3>📓 Evaluaciones</h3>
+                <div id="totalEvaluaciones" class="stat-number">0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🔑 Actualizar contraseña</h2>
+        <p>La profesora puede cambiar la contraseña de cualquier estudiante.</p>
+        <select id="estudianteCambiarClave" onchange="cargarClaveEstudiante()" aria-label="Seleccionar estudiante para cambiar contraseña">
+            <option value="">--Selecciona un estudiante--</option>
+        </select>
+        <input id="nuevaClaveEstudiante" type="password" placeholder="Nueva contraseña" autocomplete="new-password">
+        <input id="confirmarClaveEstudiante" type="password" placeholder="Confirmar nueva contraseña" autocomplete="new-password">
+        <button class="btn-purple" onclick="actualizarClaveEstudiante()">🔐 Guardar contraseña</button>
+        <p id="mensajeClaveEstudiante" class="small" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="card">
+        <h2>📝 Registrar notas</h2>
+        <p>Registra la nota de una lectura completada.</p>
+        <select id="estudianteNota" onchange="cargarLecturasParaNota()" aria-label="Seleccionar estudiante para registrar nota">
+            <option value="">--Selecciona un estudiante--</option>
+        </select>
+        <select id="lecturaNota" aria-label="Seleccionar lectura completada">
+            <option value="">--Selecciona una lectura completada--</option>
+        </select>
+        <input id="valorNotaLectura" type="number" min="0" max="100" placeholder="Nota de lectura (0 a 100)">
+        <button class="btn-blue" onclick="registrarNotaLectura()">💾 Guardar nota de lectura</button>
+        <p id="mensajeNotaLectura" class="small" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="card">
+        <h2>📚 Añadir lectura a la biblioteca</h2>
+        <p>Escribe una lectura y el sistema creará preguntas de comprensión automáticamente.</p>
+        <input id="nuevaLecturaTitulo" type="text" placeholder="Título de la lectura">
+        <select id="nuevaLecturaTipo" aria-label="Tipo de nueva lectura">
+            <option value="Cuento">Cuento</option>
+            <option value="Leyenda">Leyenda</option>
+            <option value="Historia">Historia</option>
+        </select>
+        <textarea id="nuevaLecturaTexto" rows="8" placeholder="Escribe aquí la lectura. Separa los párrafos con una línea en blanco."></textarea>
+        <button class="btn-purple" onclick="agregarLecturaBiblioteca()">➕ Guardar lectura</button>
+        <p id="mensajeNuevaLectura" class="small" role="status" aria-live="polite"></p>
+    </div>
+
+    <!--TABLA-->
+    <div class="card">
+        <h2>👧🏻🧒🏻 Seguimiento de estudiantes</h2>
+        <div style="overflow:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>N.°</th>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Curso</th>
+                        <th>Estado</th>
+                        <th>Último ingreso</th>
+                        <th>Lecturas</th>
+                        <th>Notas de lecturas</th>
+                        <th>Actividades</th>
+                        <th>Notas de evaluaciones</th>
+                        <th>Mejor nota</th>
+                        <th>Nivel de comprensión</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaEstudiantes"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <b>LeeBol</b>
+    <br>
+    Aplicación educativa de comprensión lectora
+</footer>
+</div>
+
+<script>
+/* =============================
+   ESTUDIANTES
+============================= */
+const estudiantes = [
+    { nombre:"Gael", usuario:"gael01", clave:"Gael4821", edad:8, curso:"3.° Primaria" },
+    { nombre:"Zoe", usuario:"zoe02", clave:"Zoe7394", edad:8, curso:"3.° Primaria" },
+    { nombre:"Luz", usuario:"luz03", clave:"Luz0909", edad:8, curso:"3.° Primaria" },
+    { nombre:"Luz Emily", usuario:"luzEmily04", clave:"Luz2323", edad:8, curso:"3.° Primaria" },
+    { nombre:"Yadil", usuario:"yadil05", clave:"Yadil4343", edad:8, curso:"3.° Primaria" },
+    { nombre:"Heidi", usuario:"heidi06", clave:"Heidi8589", edad:8, curso:"3.° Primaria" },
+    { nombre:"Eidan", usuario:"eidan07", clave:"Eidan4567", edad:8, curso:"3.° Primaria" },
+    { nombre:"Hector", usuario:"hector08", clave:"Hector7685", edad:8, curso:"3.° Primaria" },
+    { nombre:"Dominic", usuario:"dominic09", clave:"Dominic7548", edad:8, curso:"3.° Primaria" },
+    { nombre:"Antoni", usuario:"antoni10", clave:"Antoni9767", edad:8, curso:"3.° Primaria" },
+    { nombre:"Jossue", usuario:"josue11", clave:"Josue3476", edad:8, curso:"3.° Primaria" },
+    { nombre:"Oriana", usuario:"oriana12", clave:"Oriana2348", edad:8, curso:"3.° Primaria" },
+    { nombre:"Iker", usuario:"iker13", clave:"Iker8750", edad:8, curso:"3.° Primaria" },
+    { nombre:"Anyelo", usuario:"anyelo14", clave:"Anyelo9690", edad:8, curso:"3.° Primaria" },
+    { nombre:"David", usuario:"david15", clave:"David3750", edad:8, curso:"3.° Primaria" },
+    { nombre:"Hugo", usuario:"hugo16", clave:"Hugo0956", edad:8, curso:"3.° Primaria" },
+    { nombre:"Angel", usuario:"angel17", clave:"Angel5988", edad:8, curso:"3.° Primaria" },
+    { nombre:"Abigail", usuario:"abigail18", clave:"Abigail4210", edad:8, curso:"3.° Primaria" },
+    { nombre:"Jared", usuario:"jared19", clave:"Jared6123", edad:8, curso:"3.° Primaria" }
+];
+
+/* =============================
+   PROFESORA
+============================= */
+const profesora = { usuario:"profesora", clave:"Graciela-2026" };
+
+/* =============================
+   CUENTOS
+============================= */
+const cuentos = [
+{
+    id:"bicentenario",
+    titulo:"El cuento del Bicentenario",
+    tipo:"Cuento",
+    icono:"🎉",
+    audio:"",
+    texto:`
+<p>Bolivia celebra su Bicentenario recordando su historia, su diversidad y la riqueza cultural de sus pueblos.</p>
+<p>En cada región existen historias, costumbres, tradiciones y personajes que forman parte de nuestra identidad.</p>
+<p>Conocer nuestra historia nos permite comprender mejor quiénes somos y valorar la diversidad de Bolivia.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué celebra Bolivia en esta lectura?", opciones:["Su Bicentenario","Un partido de fútbol","Un cumpleaños"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué forma parte de nuestra identidad, según el texto?", opciones:["Solo los edificios","Las historias, costumbres y tradiciones","Nada en especial"], correcta:1 },
+        { nivel:"inferencial", pregunta:"¿Por qué es importante conocer nuestra historia, según el cuento?", opciones:["Para comprender quiénes somos","Para aprobar un examen","Porque lo dice la maestra"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué podrías hacer tú para valorar la diversidad de tu país?", opciones:["Ignorar las costumbres de otras regiones","Aprender y respetar tradiciones distintas a las mías","Burlarme de lo que no conozco"], correcta:1 }
+    ]
+},
+{
+    id:"condor",
+    titulo:"El cóndor y la montaña",
+    tipo:"Cuento",
+    icono:"🦅",
+    audio:"",
+    texto:`
+<p>Un joven observaba cada mañana un cóndor volar sobre las montañas.</p>
+<p>Un día comprendió que aquel vuelo representaba libertad y respeto por la naturaleza.</p>
+<p>Desde entonces decidió cuidar los animales y enseñar a sus compañeros que la naturaleza es parte de la vida de todos.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué animal observaba el joven cada mañana?", opciones:["Un cóndor","Un perro","Un pez"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué decidió hacer el joven al final?", opciones:["Cazar cóndores","Cuidar los animales y enseñar a sus compañeros","Mudarse de la montaña"], correcta:1 },
+        { nivel:"inferencial", pregunta:"¿Qué representaba el vuelo del cóndor para el joven?", opciones:["Peligro","Libertad y respeto por la naturaleza","Aburrimiento"], correcta:1 },
+        { nivel:"valorativa", pregunta:"¿Qué acción parecida a la del joven podrías hacer tú?", opciones:["Cuidar una planta o animal cercano","No hacer nada","Molestar a los animales"], correcta:0 }
+    ]
+},
+{
+    id:"ekeko",
+    titulo:"La historia del Ekeko",
+    tipo:"Leyenda",
+    icono:"🎁",
+    audio:"",
+    texto:`
+<p>Cuenta la tradición andina que el Ekeko es un personaje relacionado con la abundancia y los buenos deseos.</p>
+<p>Las personas lo representan cargado de pequeños objetos que simbolizan aquello que esperan conseguir.</p>
+<p>Esta tradición forma parte de la cultura boliviana y se transmite de generación en generación.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Con qué se relaciona el Ekeko?", opciones:["La abundancia y los buenos deseos","La tristeza","El invierno"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué cargan las representaciones del Ekeko?", opciones:["Piedras","Pequeños objetos que simbolizan deseos","Agua"], correcta:1 },
+        { nivel:"inferencial", pregunta:"¿Por qué crees que esta tradición sigue viva hoy?", opciones:["Porque se transmite de generación en generación","Porque está prohibida","Porque nadie la conoce"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué opinas sobre mantener vivas las tradiciones familiares?", opciones:["Es importante porque conecta con nuestra cultura","No sirve para nada","Es aburrido"], correcta:0 }
+    ]
+},
+{
+    id:"laguna",
+    titulo:"La leyenda de la Laguna Azul",
+    tipo:"Leyenda",
+    icono:"💧",
+    audio:"",
+    texto:`
+<p>En una comunidad se contaba que una laguna de aguas azules protegía los recuerdos de quienes vivieron allí.</p>
+<p>Los niños aprendieron que cuidar el agua significaba cuidar también la memoria y la vida de su comunidad.</p>
+<p>Por eso comenzaron a mantener limpio el lugar y enseñar a otros a protegerlo.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué protegía la laguna, según la leyenda?", opciones:["Los recuerdos de quienes vivieron allí","Dinero escondido","Nada"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué empezaron a hacer los niños?", opciones:["Ensuciar la laguna","Mantener limpio el lugar y enseñar a protegerlo","Alejarse para siempre"], correcta:1 },
+        { nivel:"inferencial", pregunta:"¿Qué relación existe entre cuidar el agua y cuidar la memoria de la comunidad?", opciones:["Ninguna relación","Cuidar el agua es una forma de honrar y proteger la historia del lugar","Son cosas opuestas"], correcta:1 },
+        { nivel:"valorativa", pregunta:"¿Qué podrías hacer tú para cuidar el agua en tu comunidad?", opciones:["No desperdiciarla y mantener limpios los ríos o lagunas","Tirar basura en el agua","No hacer nada"], correcta:0 }
+    ]
+},
+{
+    id:"salar",
+    titulo:"El Salar de Uyuni",
+    tipo:"Leyenda",
+    icono:"🧂",
+    audio:"",
+    texto:`
+<p>El Salar de Uyuni es uno de los lugares más conocidos de Bolivia.</p>
+<p>Alrededor de sus paisajes existen historias y tradiciones que se han transmitido entre generaciones.</p>
+<p>Sus grandes extensiones de sal nos recuerdan la importancia de conocer y proteger los paisajes de nuestro país.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué es el Salar de Uyuni?", opciones:["Uno de los lugares más conocidos de Bolivia","Un río pequeño","Una ciudad"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué se ha transmitido entre generaciones, según el texto?", opciones:["Historias y tradiciones","Solo mapas","Nada"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué nos recuerdan las extensiones de sal del Salar?", opciones:["La importancia de conocer y proteger los paisajes","Que hay que evitarlos","Que no tienen valor"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo podrías ayudar a proteger un lugar natural de tu país?", opciones:["No tirando basura y cuidándolo cuando lo visito","Dejando basura","Dañando las plantas del lugar"], correcta:0 }
+    ]
+},
+{
+    id:"kantuta",
+    titulo:"La leyenda de la kantuta",
+    tipo:"Leyenda",
+    icono:"🌺",
+    audio:"",
+    texto:`
+<p>Cuenta una antigua leyenda que dos pueblos que vivían cerca de las montañas estaban enfrentados desde hacía mucho tiempo.</p>
+<p>Un día, sus jóvenes líderes comprendieron que la amistad y la unión podían traer paz a sus comunidades.</p>
+<p>De esa unión nació una flor de colores intensos, parecida a la kantuta, que desde entonces representa la unión y la esperanza.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Dónde vivían los dos pueblos?", opciones:["Cerca de las montañas","En una isla lejana","En una ciudad moderna"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué comprendieron los jóvenes líderes?", opciones:["Que debían separarse","Que la amistad y la unión podían traer paz","Que no necesitaban a sus comunidades"], correcta:1 },
+        { nivel:"inferencial", pregunta:"¿Qué representa la flor de colores intensos?", opciones:["La unión y la esperanza","La tristeza y el miedo","La competencia entre pueblos"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué puedes hacer para promover la unión en tu curso?", opciones:["Escuchar y ayudar a mis compañeros","Excluir a quienes piensan diferente","Crear más problemas"], correcta:0 }
+    ]
+},
+{
+    id:"illimani",
+    titulo:"La historia del Illimani",
+    tipo:"Historia",
+    icono:"🏔️",
+    audio:"",
+    texto:`
+<p>El Illimani es una de las montañas más representativas de Bolivia y acompaña el paisaje de la ciudad de La Paz.</p>
+<p>Sus cumbres nevadas han inspirado canciones, poemas y relatos que forman parte de la memoria de muchas familias bolivianas.</p>
+<p>Para sus habitantes, contemplar el Illimani también recuerda la importancia de cuidar las montañas, el agua y la naturaleza.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué es el Illimani?", opciones:["Una montaña representativa de Bolivia","Un lago del oriente","Una danza tradicional"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué han inspirado sus cumbres nevadas?", opciones:["Canciones, poemas y relatos","Solo juegos deportivos","Únicamente mapas"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué el Illimani forma parte de la memoria familiar?", opciones:["Porque aparece en relatos y recuerdos de muchas familias","Porque nadie lo conoce","Porque está lejos de Bolivia"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes cuidar las montañas y la naturaleza?", opciones:["No dejar basura y respetar los espacios naturales","Dañar las plantas","Desperdiciar el agua"], correcta:0 }
+    ]
+},
+{
+    id:"tunupa",
+    titulo:"La leyenda de Tunupa",
+    tipo:"Leyenda",
+    icono:"🌋",
+    audio:"",
+    texto:`
+<p>En las tradiciones andinas, Tunupa es una figura relacionada con la fuerza de la naturaleza y los paisajes del altiplano.</p>
+<p>Las comunidades contaban sus historias para explicar el origen de volcanes, salares y montañas que observaban a su alrededor.</p>
+<p>Estos relatos enseñan a mirar la naturaleza con respeto y a valorar los conocimientos transmitidos por los pueblos originarios.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Con qué se relaciona Tunupa?", opciones:["Con la fuerza de la naturaleza","Con los videojuegos","Con los edificios modernos"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué explicaban las comunidades mediante sus historias?", opciones:["El origen de volcanes, salares y montañas","Las reglas de un deporte","El funcionamiento de una computadora"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué enseñanza aparece en estos relatos?", opciones:["Mirar la naturaleza con respeto","Ignorar los conocimientos antiguos","Destruir los paisajes"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Por qué es importante escuchar a los pueblos originarios?", opciones:["Porque conservan conocimientos y tradiciones valiosas","Porque sus historias no tienen importancia","Porque así evitamos aprender"], correcta:0 }
+    ]
+},
+{
+    id:"lago_titicaca",
+    titulo:"La leyenda del lago Titicaca",
+    tipo:"Leyenda",
+    icono:"🌊",
+    audio:"",
+    texto:`
+<p>Las comunidades del altiplano cuentan que el lago Titicaca guarda historias antiguas sobre el origen de sus pueblos.</p>
+<p>Sus aguas y sus islas han sido parte de la vida de familias que aprendieron a pescar, cultivar y cuidar el lago.</p>
+<p>Por eso el Titicaca es considerado un lugar de gran importancia natural y cultural para Bolivia.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Dónde se encuentra el lago Titicaca según la lectura?", opciones:["En el altiplano","En el desierto del Sahara","En una selva lejana"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué aprendieron a hacer las familias cerca del lago?", opciones:["Pescar, cultivar y cuidar el lago","Construir aviones","Buscar petróleo"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué el lago es importante para las comunidades?", opciones:["Porque forma parte de su vida y su cultura","Porque nadie lo visita","Porque no tiene historia"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes cuidar un lago o río?", opciones:["No tirar basura y proteger sus orillas","Ensuciar el agua","Desperdiciar sus recursos"], correcta:0 }
+    ]
+},
+{
+    id:"quirquincho_charango",
+    titulo:"El quirquincho y el charango",
+    tipo:"Cuento",
+    icono:"🎶",
+    audio:"",
+    texto:`
+<p>Un pequeño quirquincho vivía entre las montañas y escuchaba con atención las canciones de su comunidad.</p>
+<p>Un artesano observó su caparazón y creó un instrumento de sonido alegre, inspirado en la forma del animal.</p>
+<p>Desde entonces el charango acompaña muchas expresiones musicales de Bolivia y recuerda el respeto por la naturaleza.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué animal aparece en el cuento?", opciones:["Un quirquincho","Un cóndor marino","Un jaguar azul"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué creó el artesano?", opciones:["Un charango","Una campana","Una flauta de metal"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué relación existe entre el quirquincho y el charango?", opciones:["El instrumento se inspiró en su caparazón","No tienen ninguna relación","El animal aprendió a fabricar instrumentos"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué debemos hacer con los animales de nuestra región?", opciones:["Respetarlos y proteger su hábitat","Cazarlos por diversión","Destruir sus refugios"], correcta:0 }
+    ]
+},
+{
+    id:"potosi_plata",
+    titulo:"La historia de Potosí y la plata",
+    tipo:"Historia",
+    icono:"⛰️",
+    audio:"",
+    texto:`
+<p>Potosí creció junto al Cerro Rico, una montaña conocida por sus riquezas minerales y por su importancia histórica.</p>
+<p>Durante siglos, la plata extraída de sus minas tuvo un papel importante en la historia de Bolivia y del mundo.</p>
+<p>Hoy la ciudad conserva edificios, tradiciones y recuerdos que ayudan a conocer el pasado del país.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Junto a qué montaña creció Potosí?", opciones:["El Cerro Rico","El Illimani","El Sajama"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué mineral se menciona en la lectura?", opciones:["La plata","El carbón","El cobre azul"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué permiten conocer los edificios y tradiciones de Potosí?", opciones:["El pasado del país","El futuro de otros planetas","Solo las reglas de un juego"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Por qué debemos cuidar los lugares históricos?", opciones:["Porque conservan la memoria de la sociedad","Porque no tienen ningún valor","Porque deben desaparecer"], correcta:0 }
+    ]
+},
+{
+    id:"sajama",
+    titulo:"El Sajama, guardián del altiplano",
+    tipo:"Cuento",
+    icono:"🏔️",
+    audio:"",
+    texto:`
+<p>El Sajama se levanta como una gran montaña en el altiplano boliviano y observa los paisajes que lo rodean.</p>
+<p>Una niña de la comunidad decía que la montaña enseñaba paciencia, porque permanecía firme frente al viento y al frío.</p>
+<p>Sus habitantes aprendieron que cuidar la montaña también significa proteger el agua, los animales y las plantas.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Dónde se encuentra el Sajama?", opciones:["En el altiplano boliviano","En una playa tropical","En una ciudad subterránea"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué enseñaba la montaña según la niña?", opciones:["Paciencia","Desorden","Indiferencia"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué cuidar la montaña protege también otros elementos?", opciones:["Porque allí se relacionan el agua, los animales y las plantas","Porque la montaña no tiene vida","Porque todo debe estar separado"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué acción ayuda a proteger el altiplano?", opciones:["Cuidar el agua y respetar a los animales","Tirar basura","Romper las plantas"], correcta:0 }
+    ]
+},
+{
+    id:"minero_copajira",
+    titulo:"Copajira, la voz de la montaña",
+    tipo:"Leyenda",
+    icono:"⛏️",
+    audio:"",
+    texto:`
+<p>En algunas comunidades mineras se contaban historias sobre Copajira, una figura relacionada con la protección de las minas.</p>
+<p>Los trabajadores aprendían a entrar con respeto y a ayudarse unos a otros durante sus jornadas.</p>
+<p>La leyenda recuerda que el trabajo en comunidad y el cuidado son importantes para regresar a casa con bien.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Con qué se relaciona Copajira?", opciones:["Con la protección de las minas","Con la pesca del lago","Con la agricultura tropical"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué aprendían los trabajadores?", opciones:["A respetar y ayudarse","A trabajar solos","A ignorar los peligros"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué valor destaca la leyenda?", opciones:["La solidaridad y el cuidado","La competencia","La indiferencia"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes ayudar a tus compañeros?", opciones:["Compartir, escuchar y colaborar","Burlarte de sus errores","Dejarlos solos"], correcta:0 }
+    ]
+},
+{
+    id:"chacaltaya",
+    titulo:"El recuerdo del Chacaltaya",
+    tipo:"Historia",
+    icono:"❄️",
+    audio:"",
+    texto:`
+<p>El Chacaltaya fue una montaña muy conocida cerca de La Paz y durante muchos años recibió visitantes que disfrutaban de su nieve.</p>
+<p>Con el paso del tiempo, el clima cambió y la nieve disminuyó, convirtiendo al lugar en un ejemplo de los efectos del calentamiento global.</p>
+<p>Su historia invita a reflexionar sobre el cuidado del planeta y el uso responsable del agua.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué tenía el Chacaltaya durante muchos años?", opciones:["Nieve","Palmeras","Un mar"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué ocurrió con la nieve?", opciones:["Disminuyó con el tiempo","Se volvió más abundante","Desapareció de todos los países"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué problema ayuda a comprender esta historia?", opciones:["Los efectos del calentamiento global","La historia de los trenes","La fabricación de juguetes"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué puedes hacer para cuidar el planeta?", opciones:["Ahorrar agua y energía","Dejar las luces encendidas","Desperdiciar agua"], correcta:0 }
+    ]
+},
+{
+    id:"manco_kapac_mama_ollo",
+    titulo:"Manco Kapac y Mama Ocllo",
+    tipo:"Leyenda",
+    icono:"☀️",
+    audio:"",
+    texto:`
+<p>Una tradición andina cuenta que Manco Kapac y Mama Ocllo salieron del lago Titicaca para enseñar conocimientos a los pueblos.</p>
+<p>Ellos mostraron formas de cultivar, organizarse y vivir en comunidad, buscando un lugar donde fundar un nuevo pueblo.</p>
+<p>La historia destaca la importancia de aprender, compartir saberes y trabajar juntos.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿De dónde salieron Manco Kapac y Mama Ocllo?", opciones:["Del lago Titicaca","Del Salar de Uyuni","De una cueva marina"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué enseñaron a los pueblos?", opciones:["A cultivar y organizarse","A olvidar sus tradiciones","A destruir sus cosechas"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué valor principal transmite la historia?", opciones:["Compartir conocimientos y trabajar juntos","Guardar todo para uno mismo","Evitar aprender"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo compartes tus conocimientos?", opciones:["Ayudando a quien necesita aprender","Negándote a explicar","Burlándote de las preguntas"], correcta:0 }
+    ]
+},
+{
+    id:"simon_patino",
+    titulo:"La historia de Simón I. Patiño",
+    tipo:"Historia",
+    icono:"📚",
+    audio:"",
+    texto:`
+<p>Simón I. Patiño fue un empresario boliviano relacionado con la explotación del estaño durante una etapa importante de la historia económica del país.</p>
+<p>Su vida muestra cómo los recursos naturales influyeron en el crecimiento de ciudades, ferrocarriles y actividades comerciales.</p>
+<p>También invita a estudiar la historia con una mirada crítica y a pensar en el uso responsable de las riquezas de Bolivia.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Con qué mineral se relaciona esta historia?", opciones:["El estaño","La sal marina","El oro verde"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué actividades fueron influidas por esos recursos?", opciones:["Ciudades, ferrocarriles y comercio","Solo partidos deportivos","Únicamente la pesca"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué se recomienda estudiar la historia con mirada crítica?", opciones:["Para comprender sus logros y sus consecuencias","Para memorizar sin pensar","Para olvidar el pasado"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo deben aprovecharse los recursos naturales?", opciones:["Con responsabilidad y pensando en las comunidades","Sin cuidar el ambiente","Desperdiciándolos"], correcta:0 }
+    ]
+},
+{
+    id:"diablada_oruro",
+    titulo:"La danza de la Diablada",
+    tipo:"Historia",
+    icono:"🎭",
+    audio:"",
+    texto:`
+<p>La Diablada es una expresión cultural muy importante del Carnaval de Oruro, reconocido por sus danzas, música y coloridos trajes.</p>
+<p>Sus personajes y coreografías reúnen elementos de tradiciones andinas y de la historia religiosa de la región.</p>
+<p>La danza se prepara con dedicación y reúne a familias y comunidades que desean mantener viva su cultura.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿En qué celebración se presenta la Diablada?", opciones:["En el Carnaval de Oruro","En una feria de libros","En una carrera de autos"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué elementos destacan en la danza?", opciones:["Música, trajes y personajes","Solo silencio","Únicamente dibujos"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué participan familias y comunidades?", opciones:["Para conservar una expresión cultural","Para olvidar sus tradiciones","Para competir sin aprender"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes valorar una danza tradicional?", opciones:["Conocerla y respetar a quienes la practican","Burlarte de sus trajes","Ignorar su significado"], correcta:0 }
+    ]
+},
+{
+    id:"oruro_carnaval",
+    titulo:"El Carnaval de Oruro",
+    tipo:"Historia",
+    icono:"🎉",
+    audio:"",
+    texto:`
+<p>El Carnaval de Oruro reúne danzas, bandas, artesanos y visitantes que llegan para celebrar una tradición de gran importancia cultural.</p>
+<p>Durante la fiesta, las calles se llenan de música y los bailarines muestran trajes elaborados con mucho trabajo.</p>
+<p>La celebración enseña que una comunidad puede unirse para cuidar y compartir su patrimonio.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué reúne el Carnaval de Oruro?", opciones:["Danzas, bandas y artesanos","Solo automóviles","Únicamente partidos"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué muestran los bailarines?", opciones:["Trajes elaborados","Mapas antiguos","Experimentos científicos"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué demuestra la celebración?", opciones:["Que una comunidad puede unirse para cuidar su patrimonio","Que las tradiciones no importan","Que nadie participa"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo cuidas el patrimonio de tu comunidad?", opciones:["Respetando sus lugares, fiestas y tradiciones","Dañando sus monumentos","Ensuciando sus calles"], correcta:0 }
+    ]
+},
+{
+    id:"chacana_andina",
+    titulo:"La chakana y sus caminos",
+    tipo:"Cuento",
+    icono:"✳️",
+    audio:"",
+    texto:`
+<p>Una niña encontró una chakana dibujada en un tejido familiar y preguntó a su abuela qué significaba.</p>
+<p>La abuela le explicó que sus escalones podían representar caminos, encuentros y la relación entre las personas y la naturaleza.</p>
+<p>La niña comprendió que los símbolos ayudan a guardar historias y a transmitir ideas de una generación a otra.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Dónde encontró la niña la chakana?", opciones:["En un tejido familiar","En una pantalla","En un barco"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué explicó la abuela?", opciones:["Que podía representar caminos y encuentros","Que era un juguete","Que no significaba nada"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Para qué sirven los símbolos?", opciones:["Para guardar y transmitir historias","Para borrar la memoria","Para separar a las familias"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes cuidar los símbolos culturales?", opciones:["Preguntar, aprender y respetar su significado","Dibujarlos sin interés","Romper los tejidos"], correcta:0 }
+    ]
+},
+{
+    id:"yungas_coca",
+    titulo:"El camino hacia los Yungas",
+    tipo:"Cuento",
+    icono:"🌿",
+    audio:"",
+    texto:`
+<p>Un grupo de estudiantes viajó desde el altiplano hacia los Yungas y descubrió un paisaje de montañas verdes y caminos estrechos.</p>
+<p>En una comunidad conocieron plantas, cultivos y formas de trabajo que dependían del clima y del cuidado de la tierra.</p>
+<p>Al regresar, comprendieron que Bolivia tiene regiones diferentes y que todas forman parte de una misma diversidad.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿A qué región viajaron los estudiantes?", opciones:["A los Yungas","Al polo norte","A una isla europea"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué conocieron en la comunidad?", opciones:["Plantas, cultivos y formas de trabajo","Solo edificios altos","Únicamente máquinas"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué comprendieron al regresar?", opciones:["Que Bolivia tiene regiones diversas","Que todas las regiones son iguales","Que no existe variedad"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué actitud ayuda a conocer otras regiones?", opciones:["Curiosidad y respeto","Burlas y desprecio","Indiferencia"], correcta:0 }
+    ]
+},
+{
+    id:"amazonas_bolivia",
+    titulo:"La voz de la Amazonía boliviana",
+    tipo:"Cuento",
+    icono:"🌳",
+    audio:"",
+    texto:`
+<p>En la Amazonía boliviana, una niña escuchaba los sonidos del bosque, del río y de los animales que vivían cerca de su comunidad.</p>
+<p>Su familia le enseñó que cada árbol y cada especie cumplían una función importante para mantener el equilibrio del lugar.</p>
+<p>La niña decidió contar a sus compañeros que proteger el bosque también significa proteger la vida y el futuro.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué escuchaba la niña?", opciones:["El bosque, el río y los animales","El ruido de una fábrica","Solo música de una radio"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué le enseñó su familia?", opciones:["Que cada ser cumple una función","Que los árboles no sirven","Que el río debe ensuciarse"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué proteger el bosque protege el futuro?", opciones:["Porque sostiene la vida y el equilibrio","Porque no tiene habitantes","Porque solo sirve para decorar"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué acción protege los bosques?", opciones:["Plantar, reciclar y no provocar incendios","Talar sin control","Tirar basura"], correcta:0 }
+    ]
+},
+{
+    id:"tarija_vinedos",
+    titulo:"Los viñedos de Tarija",
+    tipo:"Historia",
+    icono:"🍇",
+    audio:"",
+    texto:`
+<p>Tarija es conocida por sus valles, sus viñedos y las familias que han aprendido a cultivar la uva durante generaciones.</p>
+<p>El trabajo requiere paciencia, cuidado del suelo y atención a los cambios del clima.</p>
+<p>La historia de los viñedos muestra cómo una actividad puede formar parte de la economía, la identidad y las celebraciones de una región.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Por qué es conocida Tarija en esta lectura?", opciones:["Por sus valles y viñedos","Por sus glaciares marinos","Por sus grandes fábricas de aviones"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué necesita el cultivo de la uva?", opciones:["Paciencia y cuidado","Descuido","Solo máquinas"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué representa la actividad de los viñedos?", opciones:["Economía, identidad y celebraciones","Un problema sin solución","Una actividad sin historia"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo valoras el trabajo de una comunidad agrícola?", opciones:["Reconociendo su esfuerzo y cuidando la tierra","Despreciándolo","Desperdiciando sus productos"], correcta:0 }
+    ]
+},
+{
+    id:"samaipata_fuerte",
+    titulo:"El Fuerte de Samaipata",
+    tipo:"Historia",
+    icono:"🪨",
+    audio:"",
+    texto:`
+<p>El Fuerte de Samaipata es un sitio arqueológico de Bolivia conocido por sus grabados en piedra y su ubicación en las montañas.</p>
+<p>Las marcas y figuras del lugar muestran que distintas sociedades dejaron allí señales de sus conocimientos y creencias.</p>
+<p>Visitarlo con respeto permite aprender sobre el pasado y valorar la herencia cultural de los pueblos.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué tipo de lugar es el Fuerte de Samaipata?", opciones:["Un sitio arqueológico","Un estadio moderno","Un mercado flotante"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué se encuentra en sus piedras?", opciones:["Grabados y figuras","Televisores","Carteles publicitarios"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué permiten conocer sus señales?", opciones:["Los conocimientos y creencias de sociedades antiguas","Solo el clima actual","Las reglas de un deporte"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo se debe visitar un sitio arqueológico?", opciones:["Con respeto y sin dañar sus piezas","Escribiendo sobre las piedras","Llevándose fragmentos"], correcta:0 }
+    ]
+},
+{
+    id:"incallajta",
+    titulo:"Las piedras de Incallajta",
+    tipo:"Historia",
+    icono:"🏛️",
+    audio:"",
+    texto:`
+<p>Incallajta es un importante sitio arqueológico relacionado con la presencia inca en el territorio boliviano.</p>
+<p>Sus construcciones de piedra muestran planificación, organización y conocimientos de ingeniería de las sociedades antiguas.</p>
+<p>El lugar recuerda la necesidad de investigar y proteger los sitios que cuentan la historia de Bolivia.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Con qué presencia se relaciona Incallajta?", opciones:["Con la presencia inca","Con una ciudad espacial","Con un puerto moderno"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué muestran sus construcciones?", opciones:["Planificación y conocimientos de ingeniería","Falta de organización","Solo decoración reciente"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué es importante investigar Incallajta?", opciones:["Porque ayuda a conocer la historia de Bolivia","Porque no tiene información","Porque debe permanecer olvidado"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué debes hacer al conocer un patrimonio histórico?", opciones:["Cuidarlo y respetar sus normas","Dañarlo","Extraer sus piedras"], correcta:0 }
+    ]
+},
+{
+    id:"llajua",
+    titulo:"La receta de la abuela",
+    tipo:"Cuento",
+    icono:"🌶️",
+    audio:"",
+    texto:`
+<p>Una abuela boliviana preparaba llajua con ingredientes de su huerto y enseñaba a su nieta a reconocer cada aroma.</p>
+<p>Mientras cocinaban, le contó que las recetas familiares guardan recuerdos de fiestas, visitas y momentos compartidos.</p>
+<p>La niña decidió escribir la receta para que otras generaciones pudieran conocerla y prepararla con respeto.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué preparaba la abuela?", opciones:["Llajua","Chocolate europeo","Pan dulce solamente"], correcta:0 },
+        { nivel:"literal", pregunta:"¿De dónde obtenía los ingredientes?", opciones:["De su huerto","De una fábrica","De otro planeta"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué guardan las recetas familiares?", opciones:["Recuerdos y momentos compartidos","Solo números","Nada importante"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes conservar una tradición familiar?", opciones:["Aprenderla, practicarla y compartirla","Ocultarla","Burlarte de ella"], correcta:0 }
+    ]
+},
+{
+    id:"saltena",
+    titulo:"La mañana de la salteña",
+    tipo:"Cuento",
+    icono:"🥟",
+    audio:"",
+    texto:`
+<p>Antes de ir a la escuela, Mateo acompañó a su madre a preparar salteñas para compartirlas con sus vecinos.</p>
+<p>Aprendió que cada familia tenía una forma especial de preparar el relleno y que la comida reunía a personas de distintas edades.</p>
+<p>Al terminar, Mateo comprendió que una receta también puede contar la historia de una comunidad.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué preparó Mateo con su madre?", opciones:["Salteñas","Sopa de pescado","Torta de chocolate"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Con quién compartieron la comida?", opciones:["Con sus vecinos","Con personas desconocidas de otro país","Con nadie"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué puede contar una receta?", opciones:["La historia de una comunidad","Solo el precio de los ingredientes","Nada sobre las personas"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué actitud demuestra compartir alimentos?", opciones:["Generosidad y convivencia","Egoísmo","Desinterés"], correcta:0 }
+    ]
+},
+{
+    id:"puerta_del_sol",
+    titulo:"El misterio de la Puerta del Sol",
+    tipo:"Leyenda",
+    icono:"🚪",
+    audio:"",
+    texto:`
+<p>La Puerta del Sol, ubicada en Tiwanaku, es una pieza de piedra que ha despertado la curiosidad de visitantes y estudiosos.</p>
+<p>Sus figuras y diseños muestran la habilidad de quienes la tallaron y la importancia que daban a sus símbolos.</p>
+<p>La leyenda invita a imaginar sus historias, pero también a estudiar el patrimonio con respeto y responsabilidad.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Dónde se encuentra la Puerta del Sol?", opciones:["En Tiwanaku","En una playa","En un edificio moderno"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué tiene la Puerta del Sol?", opciones:["Figuras y diseños tallados","Luces eléctricas","Pinturas recientes"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué muestran sus diseños?", opciones:["La habilidad y los símbolos de una sociedad antigua","La falta de conocimientos","Solo un juego"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo se debe tratar el patrimonio?", opciones:["Con estudio, respeto y responsabilidad","Con golpes y rayones","Como un objeto sin valor"], correcta:0 }
+    ]
+},
+{
+    id:"rio_pilcomayo",
+    titulo:"El río Pilcomayo y sus comunidades",
+    tipo:"Historia",
+    icono:"🏞️",
+    audio:"",
+    texto:`
+<p>El río Pilcomayo atraviesa regiones donde distintas comunidades dependen de sus aguas para sus actividades y su vida cotidiana.</p>
+<p>Sus orillas son hogar de plantas, peces y otros animales que forman parte del equilibrio natural.</p>
+<p>La historia del río recuerda que cuidar el agua es una tarea compartida entre comunidades y generaciones.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿De qué dependen algunas comunidades?", opciones:["De las aguas del río","De la nieve de otro continente","De un volcán apagado"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué animales pueden vivir cerca del río?", opciones:["Peces y otros animales","Solo animales domésticos","Ningún ser vivo"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Por qué cuidar el río es una tarea compartida?", opciones:["Porque muchas vidas dependen de sus aguas","Porque nadie usa el río","Porque el agua no se puede cuidar"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué acción protege los ríos?", opciones:["No contaminarlos y usar el agua responsablemente","Arrojar basura","Derramar sustancias"], correcta:0 }
+    ]
+},
+{
+    id:"casa_de_libertad",
+    titulo:"La Casa de la Libertad",
+    tipo:"Historia",
+    icono:"🏛️",
+    audio:"",
+    texto:`
+<p>La Casa de la Libertad, en Sucre, es un lugar histórico relacionado con momentos importantes de la independencia de Bolivia.</p>
+<p>Sus salas conservan documentos y recuerdos que ayudan a comprender las decisiones y los esfuerzos de quienes construyeron el país.</p>
+<p>Visitarla permite valorar la libertad y reconocer que la historia se forma con la participación de muchas personas.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿En qué ciudad se encuentra la Casa de la Libertad?", opciones:["En Sucre","En Cobija","En Uyuni"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué conserva el lugar?", opciones:["Documentos y recuerdos históricos","Solo juguetes","Únicamente alimentos"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué ayuda a comprender la Casa de la Libertad?", opciones:["Los esfuerzos para construir Bolivia","La vida en otros planetas","Las reglas de un deporte"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes valorar la libertad?", opciones:["Respetando los derechos y responsabilidades","Imponiéndote sobre otros","Ignorando las normas"], correcta:0 }
+    ]
+},
+{
+    id:"pachamama",
+    titulo:"La ofrenda a la Pachamama",
+    tipo:"Leyenda",
+    icono:"🌎",
+    audio:"",
+    texto:`
+<p>En muchas comunidades andinas se agradece a la Pachamama por los alimentos, el agua y la vida que ofrece la tierra.</p>
+<p>Las familias se reúnen para compartir una ofrenda y recordar que las personas forman parte de la naturaleza.</p>
+<p>La tradición enseña a agradecer, cuidar el suelo y utilizar los recursos sin desperdiciarlos.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Por qué se agradece a la Pachamama?", opciones:["Por los alimentos, el agua y la vida","Por los teléfonos","Por los edificios"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué hacen las familias?", opciones:["Comparten una ofrenda","Abandonan la comunidad","Destruyen el suelo"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué enseña la tradición?", opciones:["Agradecer y cuidar los recursos","A desperdiciar la tierra","A ignorar la naturaleza"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes cuidar el suelo?", opciones:["No contaminarlo y aprovechar los recursos responsablemente","Tirar basura","Dañar las plantas"], correcta:0 }
+    ]
+},
+{
+    id:"tinku_comunidad",
+    titulo:"El encuentro del Tinku",
+    tipo:"Historia",
+    icono:"🕺",
+    audio:"",
+    texto:`
+<p>El Tinku es una expresión cultural de comunidades del norte de Potosí que reúne música, danza, vestimenta y memoria colectiva.</p>
+<p>Sus participantes preparan sus trajes y pasos con orgullo, mostrando la fuerza de sus raíces y el sentido de pertenencia.</p>
+<p>Conocer esta expresión ayuda a valorar la diversidad cultural de Bolivia y a respetar sus diferentes formas de celebrar.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué reúne el Tinku?", opciones:["Música, danza, vestimenta y memoria","Solo carreras","Únicamente comidas"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué preparan sus participantes?", opciones:["Sus trajes y pasos","Edificios","Barcos"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué muestra esta expresión cultural?", opciones:["La fuerza de las raíces y el sentido de pertenencia","La falta de identidad","El rechazo a la comunidad"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo respetas una celebración diferente a la tuya?", opciones:["Aprendiendo sobre ella sin burlarte","Insultando a sus participantes","Prohibiéndola sin conocerla"], correcta:0 }
+    ]
+},
+{
+    id:"camino_del_inka",
+    titulo:"El Camino del Inka en Bolivia",
+    tipo:"Historia",
+    icono:"🥾",
+    audio:"",
+    texto:`
+<p>Algunos caminos antiguos de Bolivia conectaban comunidades, montañas y valles, permitiendo el intercambio de productos e historias.</p>
+<p>Los viajeros aprendían a orientarse, respetar los paisajes y colaborar con las personas que encontraban en el recorrido.</p>
+<p>Hoy esos caminos recuerdan la capacidad de organización de los pueblos y la importancia de conservarlos.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué conectaban los caminos antiguos?", opciones:["Comunidades, montañas y valles","Solo dos casas","Ciudades de otros planetas"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué permitían intercambiar?", opciones:["Productos e historias","Únicamente piedras","Solo agua"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué capacidad muestran esos caminos?", opciones:["La organización de los pueblos","La falta de comunicación","El abandono de las comunidades"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo se deben conservar los caminos históricos?", opciones:["Cuidándolos y respetando el paisaje","Dañándolos","Tirando basura en ellos"], correcta:0 }
+    ]
+},
+{
+    id:"quinua_andina",
+    titulo:"La semilla de quinua",
+    tipo:"Cuento",
+    icono:"🌾",
+    audio:"",
+    texto:`
+<p>En una comunidad del altiplano, una niña ayudaba a su familia a sembrar quinua y aprendía a observar el clima.</p>
+<p>Su abuela le explicó que esta semilla alimentaba a muchas familias y que su cultivo requería trabajo, paciencia y cuidado.</p>
+<p>La niña comprendió que los alimentos también cuentan la historia de los pueblos y de su relación con la tierra.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué sembraba la familia?", opciones:["Quinua","Café marino","Arroz de nieve"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué requería su cultivo?", opciones:["Trabajo, paciencia y cuidado","Descuido","Solo lluvia artificial"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué cuentan también los alimentos?", opciones:["La historia de los pueblos y su relación con la tierra","Solo su precio","Nada sobre la cultura"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo valoras el trabajo agrícola?", opciones:["Agradeciendo los alimentos y cuidando la tierra","Desperdiciando comida","Despreciando a los agricultores"], correcta:0 }
+    ]
+},
+{
+    id:"mariscal_santa_cruz",
+    titulo:"El Mariscal Santa Cruz y Bolivia",
+    tipo:"Historia",
+    icono:"⭐",
+    audio:"",
+    texto:`
+<p>Andrés de Santa Cruz fue una figura importante de la historia boliviana y ocupó la presidencia durante una etapa de organización del país.</p>
+<p>Su época estuvo marcada por decisiones políticas, proyectos de educación y esfuerzos para fortalecer las instituciones.</p>
+<p>Estudiar a sus personajes ayuda a comprender que la historia se construye con decisiones y debates.</p>
+`,
+    preguntas:[
+        { nivel:"literal", pregunta:"¿Qué cargo ocupó Andrés de Santa Cruz?", opciones:["La presidencia de Bolivia","La dirección de un barco","La alcaldía de una ciudad extranjera"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué proyectos se mencionan?", opciones:["Proyectos de educación y organización","Solo competencias deportivas","Únicamente fiestas"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué ayuda a comprender estudiar a los personajes históricos?", opciones:["Que el país se construye mediante decisiones y debates","Que la historia no cambia nada","Que las personas no participan"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes aprender de la historia?", opciones:["Investigar, comparar ideas y formar opiniones respetuosas","Repetir sin comprender","Ignorar las fuentes"], correcta:0 }
+    ]
+}
+];
+
+/* =============================
+   VARIABLES DE ESTADO
+============================= */
+let usuarioActual = null;
+let cuentoActual = null;
+let tamanoLectura = 17;
+let juegoPreguntas = [];
+let juegoIndice = 0;
+let juegoPuntaje = 0;
+const mediosLocales = { imagen:{}, video:{} };
+
+/* =============================
+   DATOS GUARDADOS (localStorage)
+============================= */
+function obtenerDatos(){
+    try{
+        return JSON.parse(localStorage.getItem("lectorBoliviaDatos") || "{}");
+    }catch(error){
+        localStorage.removeItem("lectorBoliviaDatos");
+        return {};
+    }
+}
+
+function guardarDatos(datos){
+    localStorage.setItem("lectorBoliviaDatos", JSON.stringify(datos));
+}
+
+/* =============================
+   CARGAR LISTA DE ESTUDIANTES EN EL SELECT
+============================= */
+function cargarListaEstudiantes(){
+    const lista = document.getElementById("listaEstudiantes");
+    lista.innerHTML = '<option value="">--Selecciona tu nombre--</option>';
+    estudiantes.forEach(function(e){
+        const opcion = document.createElement("option");
+        opcion.value = e.usuario;
+        opcion.textContent = e.nombre;
+        lista.appendChild(opcion);
+    });
+}
+
+/* =============================
+   MOSTRAR CONTRASEÑA AL ELEGIR NOMBRE
+============================= */
+function mostrarEstudiante(){
+    const usuario = document.getElementById("listaEstudiantes").value;
+    const caja = document.getElementById("datosEstudiante");
+    if(usuario === ""){
+        caja.classList.add("hidden");
+        return;
+    }
+    const est = estudiantes.find(e => e.usuario === usuario);
+    if(!est){
+        caja.classList.add("hidden");
+        return;
+    }
+    document.getElementById("usuarioMostrar").textContent = est.usuario;
+    document.getElementById("passwordEstudiante").value = "";
+    caja.classList.remove("hidden");
+}
+
+/* =============================
+   CAMBIAR TIPO DE USUARIO (LOGIN)
+============================= */
+function cambiarUsuario(){
+    const tipo = document.getElementById("tipoUsuario").value;
+    document.getElementById("passwordEstudiante").value = "";
+    if(tipo === "estudiante"){
+        document.getElementById("loginEstudiante").classList.remove("hidden");
+        document.getElementById("loginProfesora").classList.add("hidden");
+    } else {
+        document.getElementById("loginEstudiante").classList.add("hidden");
+        document.getElementById("loginProfesora").classList.remove("hidden");
+    }
+    document.getElementById("errorLogin").textContent = "";
+}
+
+/* =============================
+   ENTRAR COMO ESTUDIANTE
+============================= */
+function entrarEstudiante(){
+    const usuario = document.getElementById("listaEstudiantes").value;
+    const clave = document.getElementById("passwordEstudiante").value;
+    if(usuario === ""){
+        document.getElementById("errorLogin").textContent = "Primero selecciona tu nombre.";
+        return;
+    }
+    if(clave.trim() === ""){
+        document.getElementById("errorLogin").textContent = "Escribe tu contraseña para ingresar.";
+        document.getElementById("passwordEstudiante").focus();
+        return;
+    }
+    const est = estudiantes.find(e => e.usuario === usuario);
+    if(!est){
+        document.getElementById("errorLogin").textContent = "No se encontró el estudiante.";
+        return;
+    }
+    const datosGuardados = obtenerDatos();
+    const claveActual = datosGuardados[usuario]?.clave || est.clave;
+    if(clave !== claveActual){
+        document.getElementById("errorLogin").textContent = "Contraseña incorrecta. Inténtalo nuevamente.";
+        document.getElementById("passwordEstudiante").select();
+        return;
+    }
+
+    usuarioActual = est.usuario;
+    let datos = obtenerDatos();
+    if(!datos[usuarioActual]){
+        datos[usuarioActual] = {
+            nombre: est.nombre,
+            usuario: est.usuario,
+            edad: est.edad,
+            curso: est.curso,
+            ingreso: "",
+            estado: "no conectado",
+            lecturas: [],
+            actividades: 0,
+            notas: [],
+            mejor: 0,
+            notasLecturas: {},
+            evaluaciones: [],
+            clave: est.clave
+        };
+    }
+    if(!datos[usuarioActual].clave) datos[usuarioActual].clave = est.clave;
+    if(!datos[usuarioActual].notasLecturas) datos[usuarioActual].notasLecturas = {};
+    if(!datos[usuarioActual].evaluaciones) datos[usuarioActual].evaluaciones = [];
+    datos[usuarioActual].ingreso = new Date().toLocaleString();
+    datos[usuarioActual].estado = "En línea";
+    guardarDatos(datos);
+
+    document.getElementById("errorLogin").textContent = "";
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("panelEstudiante").classList.remove("hidden");
+    document.getElementById("mediaDocente").classList.add("hidden");
+    document.getElementById("nombreEstudiante").textContent = est.nombre;
+    document.getElementById("usuarioActual").textContent = est.usuario;
+    document.getElementById("cursoActual").textContent = est.curso;
+
+    cargarPerfil();
+    cargarBiblioteca();
+    actualizarProgreso();
+    seccion("perfil");
+}
+
+/* =============================
+   ENTRAR COMO PROFESORA
+============================= */
+function entrarProfesora(){
+    const usuario = document.getElementById("usuarioProfesora").value.trim();
+    const clave = document.getElementById("passwordProfesora").value.trim();
+
+    if(usuario === "" || clave === ""){
+        document.getElementById("errorLogin").textContent = "Completa usuario y contraseña.";
+        return;
+    }
+    if(usuario !== profesora.usuario || clave !== profesora.clave){
+        document.getElementById("errorLogin").textContent = "Usuario o contraseña incorrectos.";
+        return;
+    }
+
+    document.getElementById("errorLogin").textContent = "";
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("panelProfesora").classList.remove("hidden");
+    cargarListaCambioClave();
+    cargarListaNotas();
+    cargarLecturasPersonalizadas();
+    document.getElementById("mediaDocente").classList.remove("hidden");
+    actualizarPanelDocente();
+}
+
+/* =============================
+   CERRAR SESIÓN
+============================= */
+function cerrarSesion(){
+    detenerLectura();
+    if(usuarioActual){
+        let datos = obtenerDatos();
+        if(datos[usuarioActual]){
+            datos[usuarioActual].estado = "no conectado";
+            guardarDatos(datos);
+        }
+    }
+    usuarioActual = null;
+    cuentoActual = null;
+    document.getElementById("panelEstudiante").classList.add("hidden");
+    document.getElementById("panelProfesora").classList.add("hidden");
+    document.getElementById("mediaDocente").classList.add("hidden");
+    document.getElementById("login").classList.remove("hidden");
+    document.getElementById("listaEstudiantes").value = "";
+    document.getElementById("datosEstudiante").classList.add("hidden");
+    document.getElementById("passwordEstudiante").value = "";
+    document.getElementById("usuarioProfesora").value = "";
+    document.getElementById("passwordProfesora").value = "";
+}
+
+/* =============================
+   NAVEGACIÓN ENTRE SECCIONES (ESTUDIANTE)
+============================= */
+function seccion(nombre){
+    const secciones = ["perfil","biblioteca","lectura","actividades","evaluacion","progreso","logros","recomendaciones"];
+    secciones.forEach(function(id){
+        document.getElementById(id).classList.toggle("hidden", id !== nombre);
+    });
+    if(nombre === "progreso") actualizarProgreso();
+    if(nombre === "logros") cargarLogros();
+    if(nombre === "recomendaciones") cargarRecomendaciones();
+    if(nombre === "evaluacion") crearEvaluacion();
+    if(nombre === "actividades") cargarActividades();
+}
+
+/* =============================
+   PERFIL
+============================= */
+function cargarPerfil(){
+    const est = estudiantes.find(e => e.usuario === usuarioActual);
+    if(!est) return;
+    document.getElementById("perfilNombre").textContent = est.nombre;
+    document.getElementById("perfilEdad").textContent = est.edad;
+    document.getElementById("perfilCurso").textContent = est.curso;
+    document.getElementById("perfilNivel").textContent = calcularNivel();
+}
+
+function calcularNivel(){
+    const datos = obtenerDatos();
+    const d = datos[usuarioActual];
+    if(!d || d.mejor === 0) return "En proceso";
+    if(d.mejor >= 80) return "Avanzado";
+    if(d.mejor >= 50) return "Intermedio";
+    return "Inicial";
+}
+
+/* =============================
+   BIBLIOTECA
+============================= */
+function cargarBiblioteca(){
+    const grid = document.getElementById("bibliotecaGrid");
+    const busqueda = (document.getElementById("buscarCuento")?.value || "").trim().toLowerCase();
+    const tipo = document.getElementById("filtroTipo")?.value || "todos";
+    const datos = obtenerDatos();
+    const lecturas = datos[usuarioActual]?.lecturas || [];
+    const visibles = cuentos.filter(function(c){
+        return c.titulo.toLowerCase().includes(busqueda) && (tipo === "todos" || c.tipo === tipo);
+    });
+    grid.innerHTML = "";
+    document.getElementById("contadorBiblioteca").textContent = `${visibles.length} ${visibles.length === 1 ? "lectura encontrada" : "lecturas encontradas"}`;
+    visibles.forEach(function(c){
+        const div = document.createElement("div");
+        const completado = lecturas.includes(c.id);
+        div.className = "story" + (completado ? " story-complete" : "");
+        div.tabIndex = 0;
+        div.setAttribute("role", "button");
+        div.onclick = function(){ abrirLectura(c.id); };
+        div.onkeydown = function(event){
+            if(event.key === "Enter" || event.key === " ") abrirLectura(c.id);
+        };
+        div.innerHTML = `
+            <img class="story-image" src="${obtenerImagenLectura(c)}" alt="Imagen de ${c.titulo}" loading="lazy">
+            <div class="story-icon">${c.icono}</div>
+            <h3>${c.titulo}</h3>
+            <span class="badge">${c.tipo}</span>
+            ${completado ? '<span class="badge">✅ Completada</span>' : ''}
+        `;
+        grid.appendChild(div);
+    });
+    if(visibles.length === 0) grid.innerHTML = "<p>No encontramos lecturas con esos filtros.</p>";
+}
+
+function escaparHTML(texto){
+    return texto.replace(/[&<>"']/g, function(caracter){
+        return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[caracter];
+    });
+}
+
+function crearPreguntasAutomaticas(titulo, tipo, texto){
+    const parrafos = texto.split(/\n\s*\n/).map(function(parrafo){ return parrafo.trim(); }).filter(Boolean);
+    const primero = parrafos[0] || texto;
+    const ultimo = parrafos[parrafos.length - 1] || texto;
+    return [
+        { nivel:"literal", pregunta:"¿Cómo se llama la lectura?", opciones:[titulo,"Una lectura sin título","Una noticia deportiva"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué tipo de texto es?", opciones:[tipo,"Una receta","Un anuncio"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué idea aparece al inicio?", opciones:[primero,"Una idea que no aparece","Un dato de otra lectura"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué idea aparece al final?", opciones:[ultimo,"Una idea contraria","Una información desconocida"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Cuál es un tema importante de la lectura?", opciones:[primero,"Una competencia deportiva","Un viaje fuera del país"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué se puede aprender de esta lectura?", opciones:["Valorar la cultura, la historia y la naturaleza","No prestar atención","Olvidar el contenido"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué relación tiene la lectura con Bolivia?", opciones:["Presenta un lugar, una tradición o una historia boliviana","No tiene ninguna relación","Habla de otro planeta"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué acción se relaciona con el mensaje de la lectura?", opciones:["Respetar y cuidar la cultura y la naturaleza","Burlarse de las tradiciones","Dañar los paisajes"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué valor aparece en la lectura?", opciones:["Respeto y responsabilidad","Desinterés","Desorden"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Cómo puedes aplicar su enseñanza?", opciones:["Compartiendo lo aprendido y actuando responsablemente","Ignorando el mensaje","Dañando el patrimonio"], correcta:0 }
+    ];
+}
+
+function cargarLecturasPersonalizadas(){
+    const guardadas = JSON.parse(localStorage.getItem("lectorBoliviaLecturas") || "[]");
+    guardadas.forEach(function(lectura){
+        if(!cuentos.some(function(cuento){ return cuento.id === lectura.id; })) cuentos.push(lectura);
+    });
+    cargarBiblioteca();
+}
+
+function agregarLecturaBiblioteca(){
+    const titulo = document.getElementById("nuevaLecturaTitulo").value.trim();
+    const tipo = document.getElementById("nuevaLecturaTipo").value;
+    const textoPlano = document.getElementById("nuevaLecturaTexto").value.trim();
+    const mensaje = document.getElementById("mensajeNuevaLectura");
+    if(!titulo || !textoPlano){
+        mensaje.textContent = "Completa el título y el texto de la lectura.";
+        mensaje.style.color = "#c62828";
+        return;
+    }
+    const id = "personalizada_" + Date.now();
+    const lectura = {
+        id: id,
+        titulo: titulo,
+        tipo: tipo,
+        icono: tipo === "Leyenda" ? "🌿" : (tipo === "Historia" ? "📜" : "📖"),
+        audio: "",
+        texto: textoPlano.split(/\n\s*\n/).map(function(parrafo){ return "<p>" + escaparHTML(parrafo.trim()) + "</p>"; }).join(""),
+        preguntas: crearPreguntasAutomaticas(titulo, tipo, textoPlano)
+    };
+    const guardadas = JSON.parse(localStorage.getItem("lectorBoliviaLecturas") || "[]");
+    guardadas.push(lectura);
+    localStorage.setItem("lectorBoliviaLecturas", JSON.stringify(guardadas));
+    cuentos.push(lectura);
+    document.getElementById("nuevaLecturaTitulo").value = "";
+    document.getElementById("nuevaLecturaTexto").value = "";
+    mensaje.textContent = "✅ Lectura guardada. Ya aparece en la biblioteca con sus preguntas automáticas.";
+    mensaje.style.color = "#2e7d32";
+    cargarBiblioteca();
+}
+
+function obtenerImagenLectura(cuento){
+    if(cuento.imagen) return cuento.imagen;
+    const imagenes = {
+        bicentenario:"https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80",
+        condor:"https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=800&q=80",
+        ekeko:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        laguna:"https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=800&q=80",
+        salar:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80",
+        kantuta:"https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80",
+        illimani:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+        tunupa:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80"
+    };
+    return imagenes[cuento.id] || imagenes.bicentenario;
+}
+
+/* =============================
+   LECTURA
+============================= */
+function abrirLectura(id){
+    const c = cuentos.find(x => x.id === id);
+    if(!c) return;
+    detenerLectura();
+    cuentoActual = id;
+    document.getElementById("tituloLectura").textContent = c.icono + " " + c.titulo;
+    document.getElementById("textoLectura").innerHTML = c.texto;
+    cargarMediaLectura(c);
+
+    const audio = document.getElementById("audioLectura");
+    if(c.audio){
+        audio.src = c.audio;
+        audio.classList.remove("hidden");
+    } else {
+        audio.removeAttribute("src");
+        audio.classList.add("hidden");
+    }
+    seccion("lectura");
+}
+
+function cargarMediaLectura(cuento){
+    const imagen = document.getElementById("imagenLectura");
+    const video = document.getElementById("videoLectura");
+    const imagenGuardada = mediosLocales.imagen[cuento.id] || "";
+    const videoGuardado = mediosLocales.video[cuento.id] || "";
+    const imagenFuente = imagenGuardada || cuento.imagen || obtenerImagenLectura(cuento);
+    const videoFuente = videoGuardado || cuento.video || "";
+
+    imagen.src = imagenFuente;
+    imagen.classList.toggle("hidden", !imagenFuente);
+    video.src = videoFuente;
+    video.classList.toggle("hidden", !videoFuente);
+}
+
+function cargarImagenLocal(event){
+    if(!cuentoActual || !event.target.files[0]) return;
+    const archivo = event.target.files[0];
+    if(mediosLocales.imagen[cuentoActual]) URL.revokeObjectURL(mediosLocales.imagen[cuentoActual]);
+    mediosLocales.imagen[cuentoActual] = URL.createObjectURL(archivo);
+    const cuento = cuentos.find(function(item){ return item.id === cuentoActual; });
+    cargarMediaLectura(cuento);
+    mostrarToast("Imagen agregada a esta lectura.");
+}
+
+function cargarVideoLocal(event){
+    if(!cuentoActual || !event.target.files[0]) return;
+    const archivo = event.target.files[0];
+    const limite = 25 * 1024 * 1024;
+    if(archivo.size > limite){
+        mostrarToast("El video debe pesar menos de 25 MB.");
+        event.target.value = "";
+        return;
+    }
+    if(mediosLocales.video[cuentoActual]) URL.revokeObjectURL(mediosLocales.video[cuentoActual]);
+    mediosLocales.video[cuentoActual] = URL.createObjectURL(archivo);
+    const cuento = cuentos.find(function(item){ return item.id === cuentoActual; });
+    cargarMediaLectura(cuento);
+    mostrarToast("Video agregado a esta lectura.");
+}
+
+function mostrarToast(mensaje){
+    const toast = document.getElementById("mensajeLectura");
+    toast.textContent = mensaje;
+    toast.classList.remove("hidden");
+    clearTimeout(mostrarToast.temporizador);
+    mostrarToast.temporizador = setTimeout(function(){
+        toast.classList.add("hidden");
+    }, 3500);
+}
+
+function leerTextoLectura(){
+    if(!("speechSynthesis" in window)){
+        mostrarToast("Tu navegador no permite la lectura en voz alta.");
+        return;
+    }
+    const texto = document.getElementById("textoLectura").textContent.trim();
+    if(!texto || !cuentoActual){
+        mostrarToast("Primero selecciona una lectura.");
+        return;
+    }
+    speechSynthesis.cancel();
+    const voz = new SpeechSynthesisUtterance(texto);
+    voz.lang = "es-ES";
+    voz.rate = .9;
+    voz.onend = function(){ mostrarToast("Terminó la lectura en voz alta."); };
+    speechSynthesis.speak(voz);
+    mostrarToast("Reproduciendo la lectura en voz alta...");
+}
+
+function detenerLectura(){
+    if("speechSynthesis" in window) speechSynthesis.cancel();
+}
+
+function cambiarTamanoLectura(cambio){
+    tamanoLectura = Math.max(14, Math.min(24, tamanoLectura + cambio));
+    document.getElementById("textoLectura").style.fontSize = tamanoLectura + "px";
+    mostrarToast("Tamaño del texto: " + tamanoLectura + " px");
+}
+
+function terminarLectura(){
+    if(!cuentoActual){
+        mostrarToast("Selecciona primero una lectura en la Biblioteca.");
+        return;
+    }
+    let datos = obtenerDatos();
+    const d = datos[usuarioActual];
+    if(!d.lecturas.includes(cuentoActual)){
+        d.lecturas.push(cuentoActual);
+    }
+    guardarDatos(datos);
+    mostrarToast("¡Buen trabajo! Ahora puedes hacer las actividades de este cuento.");
+    cargarActividades();
+    seccion("actividades");
+}
+
+/* =============================
+   ACTIVIDADES (por nivel de pregunta)
+============================= */
+function cargarActividades(){
+    const cont = document.getElementById("contenidoActividades");
+    document.getElementById("juegoComprension").innerHTML = "";
+    if(!cuentoActual){
+        cont.innerHTML = "<p>Primero elige y termina de leer un cuento en la Biblioteca.</p>";
+        return;
+    }
+    const c = cuentos.find(x => x.id === cuentoActual);
+    cont.innerHTML = `<h3>${c.icono} ${c.titulo}</h3>`;
+
+    c.preguntas.forEach(function(p, i){
+        const div = document.createElement("div");
+        div.className = "question";
+        const iconoNivel = p.nivel === "literal" ? "🟢" : (p.nivel === "inferencial" ? "🟡" : "🔵");
+        let opcionesHtml = "";
+        p.opciones.forEach(function(op, j){
+            opcionesHtml += `
+                <label>
+                    <input type="radio" name="act_${i}" value="${j}">
+                    ${op}
+                </label>`;
+        });
+        div.innerHTML = `
+            <p><b>${iconoNivel} Pregunta ${i+1}:</b> ${p.pregunta}</p>
+            ${opcionesHtml}
+        `;
+        cont.appendChild(div);
+    });
+
+    const boton = document.createElement("button");
+    boton.textContent = "✅ Revisar respuestas";
+    boton.onclick = revisarActividades;
+    cont.appendChild(boton);
+
+    const resultado = document.createElement("div");
+    resultado.id = "resultadoActividades";
+    cont.appendChild(resultado);
+    prepararJuego();
+}
+
+function prepararJuego(){
+    const cont = document.getElementById("juegoComprension");
+    if(!cuentoActual){
+        cont.innerHTML = "";
+        return;
+    }
+    const cuento = cuentos.find(x => x.id === cuentoActual);
+    cont.innerHTML = `
+        <h3>⚡ Reto relámpago</h3>
+        <p>Responde preguntas rápidas y consigue puntos sobre esta lectura.</p>
+        <div class="game-menu">
+            <button class="btn-purple" onclick="iniciarJuego()">🎮 Reto relámpago</button>
+            <button class="btn-blue" onclick="iniciarSopaLetras()">🔎 Sopa de letras</button>
+            <button class="btn-yellow" onclick="iniciarCrucigrama()">🧩 Crucigrama</button>
+        </div>
+    `;
+}
+
+function palabrasClaveJuego(cuento){
+    const palabras = [cuento.titulo].concat(cuento.preguntas.map(function(p){ return p.opciones[p.correcta]; }));
+    return [...new Set(palabras.join(" ").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(/[^A-Z]+/).filter(function(palabra){
+        return palabra.length >= 4 && palabra.length <= 10;
+    }))].slice(0, 5);
+}
+
+function iniciarSopaLetras(){
+    const cuento = cuentos.find(x => x.id === cuentoActual);
+    if(!cuento) return;
+    const palabras = palabrasClaveJuego(cuento);
+    const tamano = 10;
+    const letras = Array.from({length: tamano * tamano}, function(){ return String.fromCharCode(65 + Math.floor(Math.random() * 26)); });
+    palabras.forEach(function(palabra, indice){
+        const fila = indice % tamano;
+        const inicio = (fila * tamano) + Math.min(indice, tamano - palabra.length);
+        palabra.split("").forEach(function(letra, posicion){ letras[inicio + posicion] = letra; });
+    });
+    const cont = document.getElementById("juegoComprension");
+    cont.innerHTML = `
+        <h3>🔎 Sopa de letras</h3>
+        <p>Encuentra las palabras relacionadas con <b>${cuento.titulo}</b>.</p>
+        <div class="word-grid">
+            ${letras.map(function(letra, indice){ return `<button data-indice="${indice}" onclick="seleccionarLetra(this)">${letra}</button>`; }).join("")}
+        </div>
+        <p>Palabra seleccionada: <b id="palabraSeleccionada">...</b></p>
+        <div class="word-list">${palabras.map(function(palabra){ return `<span class="badge">${palabra}</span>`; }).join("")}</div>
+        <button onclick="comprobarPalabra()">✅ Comprobar</button>
+        <button class="btn-blue" onclick="prepararJuego()">↩️ Otros juegos</button>
+        <div id="resultadoSopa" class="small" aria-live="polite"></div>
+    `;
+    window.palabrasSopa = palabras;
+    window.seleccionSopa = "";
+}
+
+function seleccionarLetra(boton){
+    boton.classList.toggle("selected");
+    window.seleccionSopa = Array.from(document.querySelectorAll("#juegoComprension .word-grid button.selected")).map(function(item){ return item.textContent; }).join("");
+    document.getElementById("palabraSeleccionada").textContent = window.seleccionSopa || "...";
+}
+
+function comprobarPalabra(){
+    const resultado = document.getElementById("resultadoSopa");
+    if(window.palabrasSopa.includes(window.seleccionSopa)){
+        resultado.textContent = "🎉 ¡Encontraste una palabra de la lectura!";
+        resultado.style.color = "#2e7d32";
+    }else{
+        resultado.textContent = "Busca una de las palabras mostradas y vuelve a intentarlo.";
+        resultado.style.color = "#c62828";
+    }
+}
+
+function iniciarCrucigrama(){
+    const cuento = cuentos.find(x => x.id === cuentoActual);
+    if(!cuento) return;
+    const preguntas = cuento.preguntas.slice(0, 4);
+    const cont = document.getElementById("juegoComprension");
+    cont.innerHTML = `
+        <h3>🧩 Crucigrama de comprensión</h3>
+        <p>Responde las pistas con palabras de la lectura.</p>
+        ${preguntas.map(function(pregunta, indice){
+            return `<div class="crossword-clue"><span>${indice + 1}. ${pregunta.pregunta}</span><input id="crucigrama_${indice}" type="text" maxlength="20" autocomplete="off"></div>`;
+        }).join("")}
+        <button class="btn-yellow" onclick="comprobarCrucigrama()">✅ Revisar crucigrama</button>
+        <button class="btn-blue" onclick="prepararJuego()">↩️ Otros juegos</button>
+        <div id="resultadoCrucigrama" class="small" aria-live="polite"></div>
+    `;
+}
+
+function comprobarCrucigrama(){
+    const cuento = cuentos.find(x => x.id === cuentoActual);
+    const preguntas = cuento.preguntas.slice(0, 4);
+    let correctas = 0;
+    preguntas.forEach(function(pregunta, indice){
+        const respuesta = document.getElementById("crucigrama_" + indice).value.trim().toLowerCase();
+        const correcta = pregunta.opciones[pregunta.correcta].toLowerCase();
+        if(respuesta === correcta) correctas++;
+    });
+    const resultado = document.getElementById("resultadoCrucigrama");
+    resultado.textContent = `Resultado: ${correctas} de ${preguntas.length} pistas correctas.`;
+    resultado.style.color = correctas === preguntas.length ? "#2e7d32" : "#7b1fa2";
+}
+
+function iniciarJuego(){
+    const cuento = cuentos.find(x => x.id === cuentoActual);
+    if(!cuento) return;
+    juegoPreguntas = [...cuento.preguntas].sort(function(){ return Math.random() - .5; }).slice(0, 3);
+    juegoIndice = 0;
+    juegoPuntaje = 0;
+    mostrarPreguntaJuego();
+}
+
+function mostrarPreguntaJuego(){
+    const cont = document.getElementById("juegoComprension");
+    const pregunta = juegoPreguntas[juegoIndice];
+    if(!pregunta){
+        cont.innerHTML = `
+            <h3>🏆 ¡Reto terminado!</h3>
+            <p class="game-score">Obtuviste ${juegoPuntaje} de ${juegoPreguntas.length} puntos.</p>
+            <button class="btn-purple" onclick="iniciarJuego()">🔁 Jugar otra vez</button>
+        `;
+        mostrarToast("¡Terminaste el reto relámpago!");
+        return;
+    }
+
+    cont.innerHTML = `
+        <h3>⚡ Reto relámpago</h3>
+        <p><b>Pregunta ${juegoIndice + 1} de ${juegoPreguntas.length}:</b> ${pregunta.pregunta}</p>
+        <p class="game-score">Puntaje: <span id="juegoPuntaje">${juegoPuntaje}</span></p>
+        <div class="game-options">
+            ${pregunta.opciones.map(function(opcion, indice){
+                return `<button onclick="responderJuego(${indice})">${opcion}</button>`;
+            }).join("")}
+        </div>
+        <div id="resultadoJuego" class="small" aria-live="polite"></div>
+    `;
+}
+
+function responderJuego(indice){
+    const pregunta = juegoPreguntas[juegoIndice];
+    if(!pregunta) return;
+    const botones = document.querySelectorAll("#juegoComprension .game-options button");
+    botones.forEach(function(boton){ boton.disabled = true; });
+    const resultado = document.getElementById("resultadoJuego");
+    if(indice === pregunta.correcta){
+        juegoPuntaje++;
+        resultado.textContent = "✅ ¡Correcto!";
+    }else{
+        resultado.textContent = "💡 Casi. La respuesta correcta era: " + pregunta.opciones[pregunta.correcta];
+    }
+    setTimeout(function(){
+        juegoIndice++;
+        mostrarPreguntaJuego();
+    }, 900);
+}
+
+function revisarActividades(){
+    const c = cuentos.find(x => x.id === cuentoActual);
+    let correctas = 0;
+    let respondidas = 0;
+
+    c.preguntas.forEach(function(p, i){
+        const seleccion = document.querySelector(`input[name="act_${i}"]:checked`);
+        if(seleccion) respondidas++;
+        if(seleccion && parseInt(seleccion.value) === p.correcta){
+            correctas++;
+        }
+    });
+
+    const total = c.preguntas.length;
+    const resultado = document.getElementById("resultadoActividades");
+    if(respondidas < total){
+        resultado.className = "result";
+        resultado.textContent = `Responde todas las preguntas para revisar tus respuestas (${respondidas}/${total}).`;
+        return;
+    }
+    resultado.className = "result";
+    resultado.innerHTML = `¡Respondiste ${correctas} de ${total} correctamente! 🎉`;
+
+    let datos = obtenerDatos();
+    datos[usuarioActual].actividades = (datos[usuarioActual].actividades || 0) + 1;
+    guardarDatos(datos);
+}
+
+/* =============================
+   EVALUACIÓN (quiz calificado sobre 100)
+============================= */
+function crearBancoEvaluacion(cuento){
+    const temporal = document.createElement("div");
+    temporal.innerHTML = cuento.texto;
+    const parrafos = Array.from(temporal.querySelectorAll("p")).map(function(parrafo){
+        return parrafo.textContent.trim();
+    });
+    const primeraIdea = parrafos[0] || cuento.titulo;
+    const ultimaIdea = parrafos[parrafos.length - 1] || cuento.titulo;
+    const inferencial = cuento.preguntas.find(function(pregunta){ return pregunta.nivel === "inferencial"; });
+    const valorativa = cuento.preguntas.find(function(pregunta){ return pregunta.nivel === "valorativa"; });
+    const banco = cuento.preguntas.slice();
+
+    banco.push(
+        { nivel:"literal", pregunta:"¿Cómo se llama la lectura seleccionada?", opciones:[cuento.titulo,"Una lectura sin título","Una historia de otro país"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué tipo de texto es esta lectura?", opciones:[cuento.tipo,"Una noticia deportiva","Una receta extranjera"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué idea aparece al inicio de la lectura?", opciones:[primeraIdea,"Una idea que no aparece en el texto","Una información de otra lectura"], correcta:0 },
+        { nivel:"literal", pregunta:"¿Qué idea aparece al final de la lectura?", opciones:[ultimaIdea,"Una idea contraria al texto","Un dato que no se menciona"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Cuál es el tema principal de la lectura?", opciones:[primeraIdea + " " + ultimaIdea,"Una competencia deportiva","Un viaje fuera de Bolivia"], correcta:0 },
+        { nivel:"inferencial", pregunta:"¿Qué aprendizaje se puede obtener de esta lectura?", opciones:[inferencial ? inferencial.opciones[inferencial.correcta] : "Valorar la cultura y la naturaleza","No aprender nada","Ignorar la historia"], correcta:0 },
+        { nivel:"valorativa", pregunta:"¿Qué acción se relaciona con el mensaje de la lectura?", opciones:[valorativa ? valorativa.opciones[valorativa.correcta] : "Cuidar y respetar la cultura","Burlarse de las tradiciones","Dañar los paisajes"], correcta:0 }
+    );
+    return banco.slice(0, 10);
+}
+
+function crearEvaluacion(){
+    const cont = document.getElementById("contenidoEvaluacion");
+    const nivel = document.getElementById("nivelEvaluacion").value;
+    cargarHistorialEvaluaciones();
+
+    if(!cuentoActual){
+        cont.innerHTML = "<p>Primero elige y termina de leer un cuento en la Biblioteca.</p>";
+        return;
+    }
+
+    const c = cuentos.find(x => x.id === cuentoActual);
+
+    const banco = crearBancoEvaluacion(c);
+    const prioridad = nivel === "facil"
+        ? ["literal", "inferencial", "valorativa"]
+        : nivel === "medio"
+            ? ["literal", "inferencial", "valorativa"]
+            : ["valorativa", "inferencial", "literal"];
+    const preguntasFiltradas = banco.slice().sort(function(a, b){
+        return prioridad.indexOf(a.nivel) - prioridad.indexOf(b.nivel);
+    }).slice(0, 10);
+
+    cont.innerHTML = `<h3>${c.icono} ${c.titulo}</h3><p class="small">Evaluación ${nivel}: 10 preguntas sobre esta lectura.</p>`;
+
+    preguntasFiltradas.forEach(function(p, i){
+        const div = document.createElement("div");
+        div.className = "question";
+        let opcionesHtml = "";
+        p.opciones.forEach(function(op, j){
+            opcionesHtml += `
+                <label>
+                    <input type="radio" name="eval_${i}" value="${j}">
+                    ${op}
+                </label>`;
+        });
+        div.innerHTML = `<p><b>Pregunta ${i+1}:</b> ${p.pregunta}</p>${opcionesHtml}`;
+        cont.appendChild(div);
+    });
+
+    const boton = document.createElement("button");
+    boton.textContent = "📤 Enviar evaluación";
+    boton.onclick = function(){ calificarEvaluacion(preguntasFiltradas, boton); };
+    cont.appendChild(boton);
+
+    const resultado = document.createElement("div");
+    resultado.id = "resultadoEvaluacion";
+    cont.appendChild(resultado);
+}
+
+function cargarHistorialEvaluaciones(){
+    const cont = document.getElementById("historialEvaluaciones");
+    if(!cont) return;
+    const datos = obtenerDatos();
+    const d = datos[usuarioActual];
+    const evaluaciones = d && d.evaluaciones ? d.evaluaciones : [];
+    const notasAntiguas = d && d.notas ? d.notas : [];
+    if(!evaluaciones.length && !notasAntiguas.length){
+        cont.innerHTML = "<p><b>📊 Mis calificaciones</b></p><p>Aún no tienes evaluaciones calificadas.</p>";
+        return;
+    }
+    const filas = evaluaciones.map(function(evaluacion){
+        const cuento = cuentos.find(function(item){ return item.id === evaluacion.cuentoId; });
+        return `<li>${cuento ? cuento.titulo : "Lectura"} · ${evaluacion.nivel} · <b>${evaluacion.nota}/100</b></li>`;
+    });
+    if(!evaluaciones.length){
+        notasAntiguas.forEach(function(nota){ filas.push(`<li>Evaluación anterior · <b>${nota}/100</b></li>`); });
+    }
+    cont.innerHTML = `<p><b>📊 Mis calificaciones de comprensión</b></p><ul>${filas.join("")}</ul><p><b>Mejor calificación: ${d.mejor || 0}/100</b></p>`;
+}
+
+function calificarEvaluacion(preguntas, boton){
+    let correctas = 0;
+    let respondidas = 0;
+    preguntas.forEach(function(p, i){
+        const seleccion = document.querySelector(`input[name="eval_${i}"]:checked`);
+        if(seleccion) respondidas++;
+        if(seleccion && parseInt(seleccion.value) === p.correcta){
+            correctas++;
+        }
+    });
+
+    const resultado = document.getElementById("resultadoEvaluacion");
+    if(respondidas < preguntas.length){
+        resultado.className = "result";
+        resultado.textContent = `Responde todas las preguntas antes de enviar (${respondidas}/${preguntas.length}).`;
+        return;
+    }
+
+    const nota = Math.round((correctas / preguntas.length) * 100);
+    resultado.className = "result";
+    resultado.innerHTML = `Tu calificación es <b>${nota}/100</b> (${correctas} de ${preguntas.length} correctas)`;
+    boton.disabled = true;
+
+    let datos = obtenerDatos();
+    const d = datos[usuarioActual];
+    if(!d.evaluaciones) d.evaluaciones = [];
+    d.notas.push(nota);
+    d.evaluaciones.push({ cuentoId: cuentoActual, nivel: document.getElementById("nivelEvaluacion").value, nota: nota });
+    if(nota > d.mejor) d.mejor = nota;
+    guardarDatos(datos);
+    cargarHistorialEvaluaciones();
+    cargarPerfil();
+    actualizarProgreso();
+}
+
+/* =============================
+   PROGRESO
+============================= */
+function actualizarProgreso(){
+    const datos = obtenerDatos();
+    const d = datos[usuarioActual];
+    if(!d) return;
+
+    const totalCuentos = cuentos.length;
+    const leidos = d.lecturas.length;
+    const porcentaje = Math.round((leidos / totalCuentos) * 100);
+
+    document.getElementById("barraProgreso").style.width = porcentaje + "%";
+    document.getElementById("porcentajeProgreso").textContent = porcentaje + "%";
+    document.getElementById("numeroLectura").textContent = leidos;
+    document.getElementById("numeroActividades").textContent = d.actividades || 0;
+    document.getElementById("mejorCalificacion").textContent = d.mejor || 0;
+    document.getElementById("nivelCompresion").textContent = calcularNivel();
+}
+
+/* =============================
+   LOGROS
+============================= */
+function cargarLogros(){
+    const datos = obtenerDatos();
+    const d = datos[usuarioActual];
+    const cont = document.getElementById("listaLogros");
+    cont.innerHTML = "";
+
+    const logros = [
+        { titulo:"Primer paso", desc:"Completa tu primera lectura", cumplido: d.lecturas.length >= 1 },
+        { titulo:"Lector curioso", desc:"Lee 3 cuentos o leyendas", cumplido: d.lecturas.length >= 3 },
+        { titulo:"Biblioteca completa", desc:"Lee todos los cuentos disponibles", cumplido: d.lecturas.length >= cuentos.length },
+        { titulo:"Mente activa", desc:"Completa 3 actividades", cumplido: (d.actividades || 0) >= 3 },
+        { titulo:"Estrella dorada", desc:"Obtén 80 o más en una evaluación", cumplido: (d.mejor || 0) >= 80 }
+    ];
+
+    logros.forEach(function(l){
+        const div = document.createElement("div");
+        div.className = "badge";
+        div.style.display = "block";
+        div.style.marginBottom = "8px";
+        div.textContent = (l.cumplido ? "🏆 " : "🔒 ") + l.titulo + " — " + l.desc;
+        cont.appendChild(div);
+    });
+}
+
+/* =============================
+   RECOMENDACIONES
+============================= */
+function cargarRecomendaciones(){
+    const datos = obtenerDatos();
+    const d = datos[usuarioActual];
+    const cont = document.getElementById("listaRecomendaciones");
+    cont.innerHTML = "";
+
+    const pendientes = cuentos.filter(c => !d.lecturas.includes(c.id));
+
+    if(pendientes.length === 0){
+        cont.innerHTML = "<p>¡Ya leíste todos los cuentos! Puedes repasar tus evaluaciones para subir tu calificación. 🎉</p>";
+        return;
+    }
+
+    cont.innerHTML = "<p>Te recomendamos seguir con:</p>";
+    pendientes.slice(0,3).forEach(function(c){
+        const div = document.createElement("div");
+        div.className = "story";
+        div.onclick = function(){ abrirLectura(c.id); seccion("lectura"); };
+        div.innerHTML = `<div class="story-icon">${c.icono}</div><h3>${c.titulo}</h3><span class="badge">${c.tipo}</span>`;
+        cont.appendChild(div);
+    });
+}
+
+/* =============================
+   PANEL DOCENTE
+============================= */
+function actualizarPanelDocente(){
+    const datos = obtenerDatos();
+
+    document.getElementById("totalEstudiantes").textContent = estudiantes.length;
+
+    let ingresaron = 0;
+    let totalLecturas = 0;
+    let totalEvaluaciones = 0;
+    const filas = [];
+
+    estudiantes.forEach(function(e, i){
+        const d = datos[e.usuario];
+        const estado = d ? d.estado : "no conectado";
+        const ultimoIngreso = d && d.ingreso ? d.ingreso : "—";
+        const lecturas = d ? d.lecturas.length : 0;
+        const notasLecturas = d && d.notasLecturas ? Object.entries(d.notasLecturas).map(function(item){
+            const cuento = cuentos.find(function(cuentoActual){ return cuentoActual.id === item[0]; });
+            return cuento ? cuento.titulo + ": " + item[1] : "";
+        }).filter(Boolean).join(" | ") || "—" : "—";
+        const actividades = d ? (d.actividades || 0) : 0;
+        const notasEvaluaciones = d && d.evaluaciones && d.evaluaciones.length ? d.evaluaciones.map(function(evaluacion){
+            const cuento = cuentos.find(function(item){ return item.id === evaluacion.cuentoId; });
+            return (cuento ? cuento.titulo : "Lectura") + ": " + evaluacion.nota;
+        }).join(" | ") : (d && d.notas && d.notas.length ? d.notas.join(" | ") : "—");
+        const nota = d ? (d.mejor || 0) : 0;
+        const nivel = d && d.mejor ? (d.mejor >= 80 ? "Avanzado" : d.mejor >= 50 ? "Intermedio" : "Inicial") : "En proceso";
+
+        if(d){
+            ingresaron++;
+            totalLecturas += lecturas;
+            totalEvaluaciones += (d.notas ? d.notas.length : 0);
+        }
+
+        const estadoClase = estado === "En línea" ? "online" : "offline";
+
+        filas.push(`
+            <tr>
+                <td>${i+1}</td>
+                <td>${e.nombre}</td>
+                <td>${e.usuario}</td>
+                <td>${e.curso}</td>
+                <td class="${estadoClase}">${estado}</td>
+                <td>${ultimoIngreso}</td>
+                <td>${lecturas}</td>
+                <td>${notasLecturas}</td>
+                <td>${actividades}</td>
+                <td>${notasEvaluaciones}</td>
+                <td>${nota}</td>
+                <td>${nivel}</td>
+            </tr>
+        `);
+    });
+
+    document.getElementById("estudiantesIngresaron").textContent = ingresaron;
+    document.getElementById("totalLecturas").textContent = totalLecturas;
+    document.getElementById("totalEvaluaciones").textContent = totalEvaluaciones;
+    document.getElementById("tablaEstudiantes").innerHTML = filas.join("");
+}
+
+function cargarListaCambioClave(){
+    const lista = document.getElementById("estudianteCambiarClave");
+    if(!lista) return;
+    lista.innerHTML = '<option value="">--Selecciona un estudiante--</option>';
+    estudiantes.forEach(function(estudiante){
+        const opcion = document.createElement("option");
+        opcion.value = estudiante.usuario;
+        opcion.textContent = estudiante.nombre + " (" + estudiante.usuario + ")";
+        lista.appendChild(opcion);
+    });
+}
+
+function cargarListaNotas(){
+    const lista = document.getElementById("estudianteNota");
+    if(!lista) return;
+    lista.innerHTML = '<option value="">--Selecciona un estudiante--</option>';
+    estudiantes.forEach(function(estudiante){
+        const opcion = document.createElement("option");
+        opcion.value = estudiante.usuario;
+        opcion.textContent = estudiante.nombre + " (" + estudiante.usuario + ")";
+        lista.appendChild(opcion);
+    });
+    cargarLecturasParaNota();
+}
+
+function cargarLecturasParaNota(){
+    const usuario = document.getElementById("estudianteNota").value;
+    const lista = document.getElementById("lecturaNota");
+    lista.innerHTML = '<option value="">--Selecciona una lectura completada--</option>';
+    const datos = obtenerDatos();
+    const lecturas = datos[usuario]?.lecturas || [];
+    lecturas.forEach(function(id){
+        const cuento = cuentos.find(function(item){ return item.id === id; });
+        if(!cuento) return;
+        const opcion = document.createElement("option");
+        opcion.value = cuento.id;
+        opcion.textContent = cuento.titulo;
+        lista.appendChild(opcion);
+    });
+    document.getElementById("valorNotaLectura").value = "";
+    document.getElementById("mensajeNotaLectura").textContent = lecturas.length ? "" : "Este estudiante aún no tiene lecturas completadas.";
+}
+
+function registrarNotaLectura(){
+    const usuario = document.getElementById("estudianteNota").value;
+    const lectura = document.getElementById("lecturaNota").value;
+    const valor = Number(document.getElementById("valorNotaLectura").value);
+    const mensaje = document.getElementById("mensajeNotaLectura");
+
+    if(!usuario || !lectura){
+        mensaje.textContent = "Selecciona un estudiante y una lectura completada.";
+        mensaje.style.color = "#c62828";
+        return;
+    }
+    if(!Number.isInteger(valor) || valor < 0 || valor > 100){
+        mensaje.textContent = "La nota debe ser un número entero entre 0 y 100.";
+        mensaje.style.color = "#c62828";
+        return;
+    }
+
+    const datos = obtenerDatos();
+    if(!datos[usuario].notasLecturas) datos[usuario].notasLecturas = {};
+    datos[usuario].notasLecturas[lectura] = valor;
+    guardarDatos(datos);
+    document.getElementById("valorNotaLectura").value = "";
+    mensaje.textContent = "✅ Nota de lectura guardada correctamente.";
+    mensaje.style.color = "#2e7d32";
+    actualizarPanelDocente();
+}
+
+function cargarClaveEstudiante(){
+    document.getElementById("nuevaClaveEstudiante").value = "";
+    document.getElementById("confirmarClaveEstudiante").value = "";
+    document.getElementById("mensajeClaveEstudiante").textContent = "";
+}
+
+function actualizarClaveEstudiante(){
+    const usuario = document.getElementById("estudianteCambiarClave").value;
+    const nuevaClave = document.getElementById("nuevaClaveEstudiante").value;
+    const confirmacion = document.getElementById("confirmarClaveEstudiante").value;
+    const mensaje = document.getElementById("mensajeClaveEstudiante");
+
+    if(!usuario){
+        mensaje.textContent = "Selecciona un estudiante.";
+        mensaje.style.color = "#c62828";
+        return;
+    }
+    if(nuevaClave.length < 4){
+        mensaje.textContent = "La contraseña debe tener al menos 4 caracteres.";
+        mensaje.style.color = "#c62828";
+        return;
+    }
+    if(nuevaClave !== confirmacion){
+        mensaje.textContent = "Las contraseñas no coinciden.";
+        mensaje.style.color = "#c62828";
+        return;
+    }
+
+    const datos = obtenerDatos();
+    if(!datos[usuario]){
+        const estudiante = estudiantes.find(function(item){ return item.usuario === usuario; });
+        datos[usuario] = {
+            nombre: estudiante.nombre,
+            usuario: estudiante.usuario,
+            edad: estudiante.edad,
+            curso: estudiante.curso,
+            ingreso: "",
+            estado: "no conectado",
+            lecturas: [],
+            actividades: 0,
+            notas: [],
+            mejor: 0,
+            clave: estudiante.clave
+        };
+    }
+    datos[usuario].clave = nuevaClave;
+    guardarDatos(datos);
+    document.getElementById("nuevaClaveEstudiante").value = "";
+    document.getElementById("confirmarClaveEstudiante").value = "";
+    mensaje.textContent = "✅ Contraseña actualizada correctamente.";
+    mensaje.style.color = "#2e7d32";
+}
+
+function exportarReportes(){
+    const datos = obtenerDatos();
+    let csv = "Nombre,Usuario,Curso,Estado,Ultimo ingreso,Lecturas,Notas de lecturas,Actividades,Notas de evaluaciones,Mejor nota,Nivel\n";
+
+    estudiantes.forEach(function(e){
+        const d = datos[e.usuario];
+        const estado = d ? d.estado : "no conectado";
+        const ultimoIngreso = d && d.ingreso ? d.ingreso : "";
+        const lecturas = d ? d.lecturas.length : 0;
+        const notasLecturas = d && d.notasLecturas ? Object.entries(d.notasLecturas).map(function(item){
+            const cuento = cuentos.find(function(cuentoActual){ return cuentoActual.id === item[0]; });
+            return cuento ? cuento.titulo + ": " + item[1] : "";
+        }).filter(Boolean).join(" | ") : "";
+        const actividades = d ? (d.actividades || 0) : 0;
+        const notasEvaluaciones = d && d.evaluaciones && d.evaluaciones.length ? d.evaluaciones.map(function(evaluacion){
+            const cuento = cuentos.find(function(item){ return item.id === evaluacion.cuentoId; });
+            return (cuento ? cuento.titulo : "Lectura") + ": " + evaluacion.nota;
+        }).join(" | ") : (d && d.notas ? d.notas.join(" | ") : "");
+        const nota = d ? (d.mejor || 0) : 0;
+        const nivel = d && d.mejor ? (d.mejor >= 80 ? "Avanzado" : d.mejor >= 50 ? "Intermedio" : "Inicial") : "En proceso";
+        csv += `"${e.nombre}","${e.usuario}","${e.curso}","${estado}","${ultimoIngreso}",${lecturas},"${notasLecturas}",${actividades},"${notasEvaluaciones}",${nota},"${nivel}"\n`;
+    });
+
+    const blob = new Blob([csv], { type:"text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "reporte_lector_bolivia.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+/* =============================
+   INICIALIZACIÓN
+============================= */
+window.onload = function(){
+    cargarLecturasPersonalizadas();
+    cargarListaEstudiantes();
+    cambiarUsuario();
+};
+</script>
+</body>
+</html>
